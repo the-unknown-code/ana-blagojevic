@@ -12,8 +12,8 @@ import RegisterPlugin from '@/utils/RegisterPlugin'
 import WaitForStylesheetsLoaded from '@/utils/WaitForStylesheetsLoaded'
 import createPath from '@/utils/RouteUtils'
 import { getVersioned, getStatic } from '@/utils/AssetPath'
-import MediaTracker, { MediaState } from '@/utils/MediaTracker'
 import config, { Property, Variable, Environment, Theme } from '@/config'
+import { ImageFormat } from '@/config/globals'
 import $eventBus, { Events } from '@/events'
 import { SET_LOCALE, SET_THEME_MODE } from '@/store/modules/Application'
 import directives from '@/directives'
@@ -42,13 +42,11 @@ const startup = async () => {
   app.use(InstallPlugin, {
     $vRoot: config.variables[Variable.VERSIONED_STATIC_ROOT],
     $sRoot: config.variables[Variable.STATIC_ROOT],
-    $mediaTracker: new MediaTracker(store),
     $eventBus,
     $devMode,
     Events,
-    Theme,
+    ImageFormat,
     RouteNames,
-    MediaState,
     createPath,
     getVersioned,
     getStatic

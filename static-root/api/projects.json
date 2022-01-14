@@ -1,0 +1,220 @@
+[
+  {
+    "id": 3,
+    "name": "Project 1",
+    "time": "2020-2021",
+    "category": {
+      "id": 1,
+      "name": "Category 1",
+      "order": 0,
+      "locale": "en",
+      "created_at": "2022-01-05T13:37:11.257Z",
+      "updated_at": "2022-01-05T14:31:39.262Z"
+    },
+    "focus": false,
+    "order": 0,
+    "locale": "en",
+    "created_at": "2022-01-05T13:40:15.133Z",
+    "updated_at": "2022-01-05T14:32:47.840Z",
+    "cover": {
+      "id": 4,
+      "ratio": "portrait",
+      "image": {
+        "id": 2,
+        "name": "test.jpg",
+        "alternativeText": "",
+        "caption": "",
+        "width": 2272,
+        "height": 1704,
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_test.jpg",
+            "hash": "thumbnail_test_c627ee5a43",
+            "ext": ".jpg",
+            "mime": "image/jpeg",
+            "width": 208,
+            "height": 156,
+            "size": 3.8,
+            "path": null,
+            "url": "/uploads/thumbnail_test_c627ee5a43.jpg"
+          }
+        },
+        "hash": "test_c627ee5a43",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "size": 293.39,
+        "url": "/uploads/test_c627ee5a43.jpg",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "created_at": "2022-01-05T13:47:13.413Z",
+        "updated_at": "2022-01-05T13:47:13.422Z"
+      }
+    },
+    "social": {
+      "id": 1,
+      "title": "project 1 title social",
+      "description": "project 1 description social",
+      "image": {
+        "id": 2,
+        "name": "test.jpg",
+        "alternativeText": "",
+        "caption": "",
+        "width": 2272,
+        "height": 1704,
+        "formats": {
+          "thumbnail": {
+            "name": "thumbnail_test.jpg",
+            "hash": "thumbnail_test_c627ee5a43",
+            "ext": ".jpg",
+            "mime": "image/jpeg",
+            "width": 208,
+            "height": 156,
+            "size": 3.8,
+            "path": null,
+            "url": "/uploads/thumbnail_test_c627ee5a43.jpg"
+          }
+        },
+        "hash": "test_c627ee5a43",
+        "ext": ".jpg",
+        "mime": "image/jpeg",
+        "size": 293.39,
+        "url": "/uploads/test_c627ee5a43.jpg",
+        "previewUrl": null,
+        "provider": "local",
+        "provider_metadata": null,
+        "created_at": "2022-01-05T13:47:13.413Z",
+        "updated_at": "2022-01-05T13:47:13.422Z"
+      }
+    },
+    "rows": [
+      {
+        "__component": "project-components.landscape-composer-row",
+        "id": 1,
+        "position": "center",
+        "image": {
+          "id": 2,
+          "name": "test.jpg",
+          "alternativeText": "",
+          "caption": "",
+          "width": 2272,
+          "height": 1704,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_test.jpg",
+              "hash": "thumbnail_test_c627ee5a43",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "width": 208,
+              "height": 156,
+              "size": 3.8,
+              "path": null,
+              "url": "/uploads/thumbnail_test_c627ee5a43.jpg"
+            }
+          },
+          "hash": "test_c627ee5a43",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "size": 293.39,
+          "url": "/uploads/test_c627ee5a43.jpg",
+          "previewUrl": null,
+          "provider": "local",
+          "provider_metadata": null,
+          "created_at": "2022-01-05T13:47:13.413Z",
+          "updated_at": "2022-01-05T13:47:13.422Z"
+        }
+      },
+      {
+        "__component": "project-components.row-video-composer",
+        "id": 1,
+        "link": "https://vimeo.it/XXXXXX"
+      },
+      {
+        "__component": "project-components.text-composer-row",
+        "id": 1,
+        "text": "text text text",
+        "subText": "subtext"
+      },
+      {
+        "__component": "project-components.row-square-composer",
+        "id": 1,
+        "imageLeft": null,
+        "imageCenter": {
+          "id": 2,
+          "name": "test.jpg",
+          "alternativeText": "",
+          "caption": "",
+          "width": 2272,
+          "height": 1704,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_test.jpg",
+              "hash": "thumbnail_test_c627ee5a43",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "width": 208,
+              "height": 156,
+              "size": 3.8,
+              "path": null,
+              "url": "/uploads/thumbnail_test_c627ee5a43.jpg"
+            }
+          },
+          "hash": "test_c627ee5a43",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "size": 293.39,
+          "url": "/uploads/test_c627ee5a43.jpg",
+          "previewUrl": null,
+          "provider": "local",
+          "provider_metadata": null,
+          "created_at": "2022-01-05T13:47:13.413Z",
+          "updated_at": "2022-01-05T13:47:13.422Z"
+        },
+        "imageRight": null
+      },
+      {
+        "__component": "project-components.portrait-composer-row",
+        "id": 1,
+        "imageLeft": null,
+        "imageCenter": {
+          "id": 2,
+          "name": "test.jpg",
+          "alternativeText": "",
+          "caption": "",
+          "width": 2272,
+          "height": 1704,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_test.jpg",
+              "hash": "thumbnail_test_c627ee5a43",
+              "ext": ".jpg",
+              "mime": "image/jpeg",
+              "width": 208,
+              "height": 156,
+              "size": 3.8,
+              "path": null,
+              "url": "/uploads/thumbnail_test_c627ee5a43.jpg"
+            }
+          },
+          "hash": "test_c627ee5a43",
+          "ext": ".jpg",
+          "mime": "image/jpeg",
+          "size": 293.39,
+          "url": "/uploads/test_c627ee5a43.jpg",
+          "previewUrl": null,
+          "provider": "local",
+          "provider_metadata": null,
+          "created_at": "2022-01-05T13:47:13.413Z",
+          "updated_at": "2022-01-05T13:47:13.422Z"
+        },
+        "imageRight": null
+      }
+    ],
+    "localizations": [
+      {
+        "id": 4,
+        "locale": "it"
+      }
+    ]
+  }
+]

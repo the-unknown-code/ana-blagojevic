@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <router-view />
   <DebugInfo v-if="$devMode" />
 </template>
