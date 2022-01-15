@@ -2,6 +2,9 @@ import '../style/tailwind.scss'
 import '../style/main.scss'
 
 import { createApp } from 'vue'
+import { gsap } from 'gsap'
+import { Draggable } from 'gsap/Draggable'
+import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import router from '@/router'
 import { RouteNames } from '@/router/routes'
 import getStore from '@/store'
@@ -22,6 +25,7 @@ import App from './app/App.vue'
 
 // Service worker (works only in production mode)
 require('@/utils/ServiceWorker')
+gsap.registerPlugin(Draggable, InertiaPlugin)
 
 const store = getStore()
 const app = createApp(App)

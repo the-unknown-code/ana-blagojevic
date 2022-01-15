@@ -22,8 +22,9 @@
   "license": "ISC",
   "main": "src/bootstrap.js",
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.10.2",
-    "gsap": "^3.0.0-beta.11",
+    "gsap": "npm:@gsap/shockingly",
     "mitt": "^2.1.0",
     "regenerator-runtime": "^0.13.7",
     "vue": "^3.0.11",

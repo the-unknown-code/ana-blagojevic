@@ -1,7 +1,10 @@
 <template>
-  <div class="fullsize flex justify-center items-center md:p-24">
-    <div class="w-full h-full flex justify-center items-center">
-      <Image :format="ImageFormat.LANDSCAPE" :src="getVersioned('placeholders/01.jpg')" />
+  <div class="relative fullsize overflow-hidden">
+    <!-- <Image :format="ImageFormat.LANDSCAPE" :src="getVersioned('placeholders/01.jpg')" /> -->
+    <div ref="draggable" class="relative w-full min-h-screen">
+      <ImageAnimation v-for="(image, key) in projects" :key="key">
+        <Image :format="image.format" :src="image.src" />
+      </ImageAnimation>
     </div>
   </div>
 </template>
