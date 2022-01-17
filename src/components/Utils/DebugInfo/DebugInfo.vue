@@ -1,7 +1,7 @@
 <template>
   <div id="debug-info" class="absolute bg-black bottom-0 right-0 text-gray-300">
     <p class="block text-xs font-mono px-3 py-1">
-      <small>{{ version }}</small>
+      <small class="text-white">{{ version }}</small>
     </p>
   </div>
 </template>

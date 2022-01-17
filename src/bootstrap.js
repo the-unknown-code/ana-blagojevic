@@ -2,9 +2,9 @@ import '../style/tailwind.scss'
 import '../style/main.scss'
 
 import { createApp } from 'vue'
-import { gsap } from 'gsap'
-import { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
+// import { gsap } from 'gsap'
+// import { Draggable } from 'gsap/Draggable'
+// import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import router from '@/router'
 import { RouteNames } from '@/router/routes'
 import getStore from '@/store'
@@ -15,6 +15,7 @@ import RegisterPlugin from '@/utils/RegisterPlugin'
 import WaitForStylesheetsLoaded from '@/utils/WaitForStylesheetsLoaded'
 import createPath from '@/utils/RouteUtils'
 import { getVersioned, getStatic } from '@/utils/AssetPath'
+import { Ease } from '@/utils/CustomEase'
 import config, { Property, Variable, Environment, Theme } from '@/config'
 import { ImageFormat } from '@/config/globals'
 import $eventBus, { Events } from '@/events'
@@ -25,7 +26,7 @@ import App from './app/App.vue'
 
 // Service worker (works only in production mode)
 require('@/utils/ServiceWorker')
-gsap.registerPlugin(Draggable, InertiaPlugin)
+// gsap.registerPlugin(Draggable, InertiaPlugin)
 
 const store = getStore()
 const app = createApp(App)
@@ -49,6 +50,7 @@ const startup = async () => {
     $eventBus,
     $devMode,
     Events,
+    Ease,
     ImageFormat,
     RouteNames,
     createPath,
