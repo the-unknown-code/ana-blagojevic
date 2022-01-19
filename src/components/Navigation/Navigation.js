@@ -1,6 +1,5 @@
 // Vue @component
 import { defineComponent } from 'vue'
-import reverse from 'lodash/reverse'
 import { gsap } from 'gsap/all'
 import AbstractComponent from '@/components/AbstractComponent'
 
@@ -11,26 +10,28 @@ export default defineComponent({
     return {
       $items: null,
       canClick: true,
+      hover: false,
+      selected: 0,
       nav: [
         {
           id: 'homepage',
           label: 'HOME',
-          image: ''
+          image: this.getVersioned('placeholders/menu-01.jpg')
         },
         {
           id: 'about',
           label: 'ABOUT',
-          image: ''
+          image: this.getVersioned('placeholders/menu-02.jpg')
         },
         {
           id: 'projects',
           label: 'PROJECTS',
-          image: ''
+          image: this.getVersioned('placeholders/menu-03.jpg')
         },
         {
           id: 'contact',
           label: 'CONTACT',
-          image: ''
+          image: this.getVersioned('placeholders/menu-04.jpg')
         }
       ]
     }
@@ -61,5 +62,17 @@ export default defineComponent({
   },
   mounted() {
     this.$items = this.$el.querySelectorAll('li')
+  },
+  methods: {
+    onMouseMove({ clientY }) {
+      if (this.$mobile) return
+
+      const { thumb } = this.$refs
+      gsap.to(thumb, {
+        duration: 1,
+        ease: 'expo.out',
+        y: clientY
+      })
+    }
   }
 })
