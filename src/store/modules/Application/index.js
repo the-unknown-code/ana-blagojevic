@@ -9,6 +9,7 @@ export const SET_LOCALE = `${namespace}/setLocale`
 export const SET_STAGE = `${namespace}/setStage`
 export const SET_MEDIA_STATE = `${namespace}/setMediaState`
 export const SET_THEME_MODE = `${namespace}/setThemeMode`
+export const SET_MENU_STATE = `${namespace}/setMenuState`
 
 // Actions
 export const CHANGE_LOCALE = `${namespace}/changeLocale`
@@ -19,7 +20,8 @@ export default {
     locale: null,
     mediaState: null,
     sw: window.innerWidth,
-    sh: window.innerHeight
+    sh: window.innerHeight,
+    menuState: false
   },
   getters: {},
   mutations: {
@@ -40,6 +42,9 @@ export default {
         document.documentElement.classList.remove(Theme.DARK)
         document.documentElement.classList.add(themeMode)
       }
+    },
+    [SET_MENU_STATE](state, menuState) {
+      state.menuState = menuState === undefined ? !state.menuState : menuState
     }
   },
   actions: {

@@ -2,6 +2,7 @@ import '../style/tailwind.scss'
 import '../style/main.scss'
 
 import { createApp } from 'vue'
+import MobileDetect from 'mobile-detect'
 // import { gsap } from 'gsap'
 // import { Draggable } from 'gsap/Draggable'
 // import { InertiaPlugin } from 'gsap/InertiaPlugin'
@@ -28,8 +29,23 @@ import App from './app/App.vue'
 require('@/utils/ServiceWorker')
 // gsap.registerPlugin(Draggable, InertiaPlugin)
 
+const md = new MobileDetect(window.navigator.userAgent)
 const store = getStore()
 const app = createApp(App)
+
+const isIOS = () => {
+  if (/iPad|iPhone|iPod/.test(navigator.platform)) {
+    return true
+  } else {
+    return navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform)
+  }
+}
+
+const isIpadOS = () => {
+  return navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform)
+}
+
+const $mobile = md.mobile() || isIOS() || isIpadOS()
 
 // Register global directives and components
 RegisterPlugin.registerDirectives(app, directives)
@@ -49,6 +65,8 @@ const startup = async () => {
     $sRoot: config.variables[Variable.STATIC_ROOT],
     $eventBus,
     $devMode,
+    $mobile,
+    $phone: md.phone() !== null,
     Events,
     Ease,
     ImageFormat,

@@ -52,7 +52,7 @@ export default defineComponent({
   methods: {
     getScale() {
       const { position } = this
-      return position <= 0 ? 1 : 1 + 0.2 * position
+      return position <= 0 ? 1 : 1 + 1 * position
     }
   }
 })
