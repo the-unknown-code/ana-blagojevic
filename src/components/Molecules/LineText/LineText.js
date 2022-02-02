@@ -10,7 +10,8 @@ export default defineComponent({
   extends: AbstractComponent,
   props: {
     label: VueTypes.string.isRequired,
-    duration: VueTypes.number.def(2)
+    duration: VueTypes.number.def(2),
+    autoplay: VueTypes.bool.def(false)
   },
   data() {
     return {

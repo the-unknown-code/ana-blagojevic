@@ -24,6 +24,12 @@
       <Section>
         <List title="CV" :list="cv" />
       </Section>
+      <Section>
+        <List title="Exhibitions" :list="exhibitions" />
+      </Section>
+      <Section>
+        <List title="Education" :list="education" />
+      </Section>
     </Container>
   </article>
 </template>

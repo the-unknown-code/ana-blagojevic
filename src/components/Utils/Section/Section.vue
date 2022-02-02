@@ -1,5 +1,5 @@
 <template>
-  <section :class="[isActive ? 'visible' : 'invisible']">
+  <section>
     <slot></slot>
   </section>
 </template>

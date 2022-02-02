@@ -6,11 +6,12 @@ import LineText from '@/components/Molecules/LineText/LineText.vue'
 import Label from '@/components/Molecules/Label/Label.vue'
 import Border from '@/components/Molecules/Border/Border.vue'
 import List from '@/components/Molecules/List/List.vue'
+import ProjectThumbnail from '@/components/Molecules/ProjectThumbnail/ProjectThumbnail.vue'
 
 import Section from '@/components/Utils/Section/Section.vue'
 import FullWidth from '@/components/Utils/FullWidth/FullWidth.vue'
 import Container from '@/components/Utils/Container/Container.vue'
-import DebugInfo from '@/components/Utils/DebugInfo/DebugInfo.vue'
+import Portrait from '@/components/Utils/Portrait/Portrait.vue'
 
 export default {
   Image,
@@ -20,9 +21,10 @@ export default {
   Label,
   Border,
   List,
+  ProjectThumbnail,
 
   Section,
   FullWidth,
   Container,
-  DebugInfo
+  Portrait
 }

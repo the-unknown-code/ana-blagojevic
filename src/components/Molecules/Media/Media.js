@@ -14,23 +14,12 @@ export default defineComponent({
     title: string(),
     delay: number().def(0),
     duration: number().def(1.35),
-    parallax: bool().def(false)
+    parallax: bool().def(false),
+    debug: bool().def(false)
   },
   watch: {
     scrollOffset() {
-      const { parallax, scrollOffset, sh } = this
-      if (!parallax) return
-
-      const bb = this.$el.getBoundingClientRect()
-      // console.log(bb.y, scrollOffset.y, bb.height, sh)
-
-      const max = sh + bb.height
-      const position = -(bb.y - sh)
-
-      if (position > 0) {
-        const perc = position / max
-        gsap.set(this.$refs.parallax, { y: `${perc * 50}%` })
-      }
+      this.setOffset()
     }
   },
   async mounted() {
@@ -55,5 +44,24 @@ export default defineComponent({
       scale: 1,
       y: 0
     })
+
+    setTimeout(this.setOffset, 150)
+  },
+  methods: {
+    setOffset() {
+      const { parallax, sh } = this
+      if (!parallax) return
+
+      const bb = this.$el.getBoundingClientRect()
+
+      const max = sh + bb.height
+      const position = -(bb.y - sh)
+      if (this.debug) console.log(bb.height)
+
+      if (position > 0) {
+        const perc = position / max
+        gsap.set(this.$refs.parallax, { y: `${perc * 50}%` })
+      }
+    }
   }
 })
