@@ -1,3 +1,7 @@
 h1 {
     @apply uppercase text-5xl md:text-9xl text-darkgray;
 }
+
+h2 {
+    @apply uppercase text-xl md:text-5xl text-darkgray;
+}

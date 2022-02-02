@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed top-0 left-0 w-full h-full bg-lightgray translate-y-full" @mousemove="onMouseMove">
+  <nav class="fixed top-0 left-0 w-full h-full bg-lightgray -translate-y-full" @mousemove="onMouseMove">
     <!-- Component template: Navigation -->
     <div class="fullsize grid grid-cols-2">
       <div class="flex justify-center">

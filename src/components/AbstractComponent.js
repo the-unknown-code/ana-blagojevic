@@ -6,8 +6,8 @@ export default defineComponent({
   data() {
     return {
       scrollTriggerDefault: {
-        start: 'top 97%',
-        toggleActions: 'play none pause reverse'
+        start: 'top 99%',
+        toggleActions: 'play none none reverse'
       }
     }
   },
@@ -15,7 +15,8 @@ export default defineComponent({
     ...mapState({
       sw: (state) => state.Application.sw,
       sh: (state) => state.Application.sh,
-      menuState: (state) => state.Application.menuState
+      menuState: (state) => state.Application.menuState,
+      scrollOffset: (state) => state.Application.scrollOffset
     })
   }
 })

@@ -9,3 +9,10 @@
 .flex-center {
     @apply flex justify-center items-center;
 }
+
+section {
+  @apply relative w-full;
+  &:not(.no-margin) {
+    @apply relative w-full my-12 md:my-24;
+  }
+}

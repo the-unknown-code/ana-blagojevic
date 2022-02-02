@@ -13,5 +13,6 @@ export const Events = {
   PAGE_CREATED: 'page-created',
   CLICK: 'click',
   RESIZE: 'resize',
-  MOUSEMOVE: 'mousemove'
+  MOUSEMOVE: 'mousemove',
+  SCROLL: 'scroll'
 }

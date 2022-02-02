@@ -16,10 +16,27 @@ export default defineComponent({
     duration: number().def(1.35),
     parallax: bool().def(false)
   },
+  watch: {
+    scrollOffset() {
+      const { parallax, scrollOffset, sh } = this
+      if (!parallax) return
+
+      const bb = this.$el.getBoundingClientRect()
+      // console.log(bb.y, scrollOffset.y, bb.height, sh)
+
+      const max = sh + bb.height
+      const position = -(bb.y - sh)
+
+      if (position > 0) {
+        const perc = position / max
+        gsap.set(this.$refs.parallax, { y: `${perc * 50}%` })
+      }
+    }
+  },
   async mounted() {
     await this.$nextTick()
 
-    const { delay } = this
+    const { duration, delay } = this
     const { holder, media } = this.$refs
 
     gsap.set(holder, { scale: 1.1 })
@@ -33,7 +50,7 @@ export default defineComponent({
 
     timeline.to([holder, media], {
       delay,
-      duration: 1.35,
+      duration,
       ease: this.Ease.BEZIER_IN_OUT,
       scale: 1,
       y: 0

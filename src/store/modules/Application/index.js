@@ -7,6 +7,7 @@ const namespace = 'Application'
 // Mutations
 export const SET_LOCALE = `${namespace}/setLocale`
 export const SET_STAGE = `${namespace}/setStage`
+export const SET_SCROLL_OFFSET = `${namespace}/setStage`
 export const SET_MEDIA_STATE = `${namespace}/setMediaState`
 export const SET_THEME_MODE = `${namespace}/setThemeMode`
 export const SET_MENU_STATE = `${namespace}/setMenuState`
@@ -24,6 +25,7 @@ export default {
     themeMode: null,
     locale: null,
     mediaState: null,
+    scrollOffset: { x: 0, y: 0 },
     sw: window.innerWidth,
     sh: window.innerHeight,
     menuState: false
@@ -33,6 +35,9 @@ export default {
     [SET_STAGE](state, { sw, sh }) {
       state.sw = sw
       state.sh = sh
+    },
+    [SET_SCROLL_OFFSET](state, { x, y }) {
+      state.scrollOffset = { x, y }
     },
     [SET_LOCALE](state, locale) {
       state.locale = locale

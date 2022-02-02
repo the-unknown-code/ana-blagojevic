@@ -9,7 +9,8 @@ export default defineComponent({
   extends: AbstractComponent,
   props: {
     label: VueTypes.string.isRequired,
-    rollover: VueTypes.bool.def(false)
+    rollover: VueTypes.bool.def(false),
+    autoplay: VueTypes.bool.def(false)
   },
   data() {
     return {
@@ -42,6 +43,24 @@ export default defineComponent({
   async mounted() {
     await this.$nextTick()
     this.$labels = this.$el.querySelectorAll('.label')
+
+    if (this.autoplay) {
+      const { $labels } = this
+      gsap.killTweensOf($labels)
+      gsap.to($labels, {
+        scrollTrigger: {
+          ...this.scrollTriggerDefault,
+          trigger: this.$el
+        },
+        duration: 1,
+        ease: this.Ease.BEZIER_SLOW,
+        y: 0,
+        stagger: {
+          from: 'start',
+          each: 0.025
+        }
+      })
+    }
   },
   methods: {
     toggleAnimation(toggle, duration = 0.5) {

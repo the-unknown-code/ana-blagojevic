@@ -43,6 +43,8 @@ export default defineComponent({
       gsap.set(this.$el, { y: this.menuState ? '100%' : 0 })
       gsap.set(this.$items, { y: this.menuState ? '150%' : 0 })
 
+      if (this.menuState) this.$el.classList.remove('invisible')
+
       gsap.to(this.$el, {
         duration: 1,
         delay: this.menuState ? 0 : 0.35,
