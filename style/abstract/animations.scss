@@ -7,3 +7,20 @@
 .fade-leave-to {
   @apply absolute opacity-0;
 }
+
+.thumb-enter-active,
+.thumb-leave-active {
+  transition: all 1s ease-out;
+}
+
+.thumb-enter-from {
+ @apply absolute opacity-0 scale-90;
+}
+
+.thumb-leave-to {
+ @apply absolute opacity-0 scale-110;
+}
+
+.default-transition {
+  @apply duration-500 ease-in-out transition-all will-change-auto;
+}

@@ -1,26 +1,28 @@
 <template>
-  <nav class="fullsize bg-lightgray translate-y-full">
+  <nav class="fixed top-0 left-0 w-full h-full bg-lightgray translate-y-full" @mousemove="onMouseMove">
     <!-- Component template: Navigation -->
     <div class="fullsize grid grid-cols-2">
-      <div class="flex justify-end">
+      <div class="flex justify-center">
         <div
           v-if="!$mobile"
           ref="thumb"
           id="thumb-holder"
-          :class="['relative -translate-x-20 duration-500 ease-in-out transition-opacity will-change-auto', hover ? 'opacity-100' : 'opacity-0']"
+          :class="['relative -translate-x-20 duration-1000 ease-in-out transition-opacity will-change-auto', hover ? 'opacity-100' : 'opacity-0']"
         >
-          <div class="thumb-item w-32 h-auto -translate-y-1/2">
-            <transition name="fade">
-              <img :key="selected" :src="nav[selected].image" class="relative w-full" />
-            </transition>
+          <div id="thumb-item" class="h-auto -translate-y-1/2 overflow-hidden pointer-events-none">
+            <div ref="image" class="relative w-full h-auto">
+              <transition name="thumb">
+                <img :key="selected" :src="nav[selected].image" class="relative w-full scale-125" />
+              </transition>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="flex justify-start items-center">
-        <ul class="leading-none text-darkgray uppercase">
+        <ul ref="ul" class="leading-none text-darkgray uppercase">
           <li
-            class="relative"
+            class="relative select-none overflow-hidden"
             v-for="(item, key) in nav"
             :key="key"
             @mouseover.prevent="
@@ -30,9 +32,10 @@
               }
             "
             @mouseout.prevent="hover = false"
-            @mousemove="onMouseMove"
           >
-            <span class="block">{{ item.label }}</span>
+            <router-link class="relative block li" :to="{ name: item.route, params: { lang: 'en' } }" :title="item.label">
+              <AnimatedLabel rollover :label="item.label" class="relative" />
+            </router-link>
           </li>
         </ul>
       </div>
@@ -50,5 +53,9 @@ ul {
     font-size: 10rem;
     transform: translateX(0);
   }
+}
+
+#thumb-item {
+  width: 16vw;
 }
 </style>

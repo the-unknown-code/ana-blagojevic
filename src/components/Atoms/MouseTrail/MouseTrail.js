@@ -25,7 +25,7 @@ export default defineComponent({
     },
     onMouseMove({ clientX, clientY }) {
       gsap.to(this.$el, {
-        duration: 0.45,
+        duration: 1,
         ease: 'expo.out',
         x: clientX,
         y: clientY

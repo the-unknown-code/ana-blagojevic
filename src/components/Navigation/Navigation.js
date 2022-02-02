@@ -14,22 +14,22 @@ export default defineComponent({
       selected: 0,
       nav: [
         {
-          id: 'homepage',
+          route: 'homepage',
           label: 'HOME',
           image: this.getVersioned('placeholders/menu-01.jpg')
         },
         {
-          id: 'about',
+          route: 'about',
           label: 'ABOUT',
           image: this.getVersioned('placeholders/menu-02.jpg')
         },
         {
-          id: 'projects',
+          route: 'projects',
           label: 'PROJECTS',
           image: this.getVersioned('placeholders/menu-03.jpg')
         },
         {
-          id: 'contact',
+          route: 'contact',
           label: 'CONTACT',
           image: this.getVersioned('placeholders/menu-04.jpg')
         }
@@ -45,33 +45,48 @@ export default defineComponent({
 
       gsap.to(this.$el, {
         duration: 1,
+        delay: this.menuState ? 0 : 0.35,
         ease: this.Ease.BEZIER_IN_OUT,
         y: this.menuState ? 0 : '-100%'
       })
 
       gsap.to(this.$items, {
-        duration: 1.25,
-        ease: this.Ease.BEZIER_IN_OUT,
-        y: this.menuState ? 0 : '-50%',
+        delay: this.menuState ? 0.05 : 0,
+        duration: this.menuState ? 1.5 : 1,
+        ease: this.Ease.BEZIER_SLOW,
+        y: this.menuState ? 0 : '-100%',
         stagger: {
-          from: this.menuState ? 'start' : 'end',
-          amount: 0.1
+          from: 'start',
+          amount: this.menuState ? 0.2 : 0.1
         }
       })
     }
   },
   mounted() {
-    this.$items = this.$el.querySelectorAll('li')
+    this.$items = this.$el.querySelectorAll('.li')
   },
   methods: {
-    onMouseMove({ clientY }) {
+    onMouseMove({ clientY, clientX }) {
       if (this.$mobile) return
 
-      const { thumb } = this.$refs
-      gsap.to(thumb, {
-        duration: 1,
+      const { sw } = this
+      const { thumb, image, ul } = this.$refs
+      const { left } = ul.getBoundingClientRect()
+
+      const percX = Math.round((clientX / sw - 0.5) * 2 * -30)
+
+      gsap.to(image, {
+        duration: 6,
         ease: 'expo.out',
-        y: clientY
+        x: `${percX}%`
+      })
+
+      gsap.to(thumb, {
+        delay: 0.15,
+        duration: 2,
+        ease: 'power4.out',
+        y: clientY,
+        x: (clientX - left) / 2
       })
     }
   }

@@ -2,13 +2,16 @@
   <header class="fixed w-full z-10 py-4 px-8 select-none">
     <div class="w-full grid grid-cols-3">
       <div :class="['relative', canClick ? 'pointer-events-auto' : 'pointer-events-none']">
-        <p class="uppercase text-darkgray cursor-pointer" @click.prevent="onMenuClick">Menu</p>
+        <p class="relative leading-none flex flex-col overflow-hidden h-4 uppercase text-darkgray cursor-pointer" @click.prevent="onMenuClick">
+          <span :class="['block default-transition', menuState ? '-translate-y-full' : 'translate-y-0']">Menu</span>
+          <span :class="['block default-transition', menuState ? '-translate-y-full' : 'translate-y-0']">Chiudi</span>
+        </p>
       </div>
       <div class="relative text-center">
-        <h1 class="uppercase text-darkgray">Ana Blagojevic</h1>
+        <p class="uppercase text-darkgray leading-none">Ana Blagojevic</p>
       </div>
       <div class="relative text-right">
-        <p class="uppercase text-darkgray">® 2021</p>
+        <p class="uppercase text-darkgray leading-none">® 2021</p>
       </div>
     </div>
   </header>

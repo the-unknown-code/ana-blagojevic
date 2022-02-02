@@ -3,7 +3,9 @@ import '../style/main.scss'
 
 import { createApp } from 'vue'
 import MobileDetect from 'mobile-detect'
-// import { gsap } from 'gsap'
+import { gsap } from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import SplitText from 'gsap/SplitText'
 // import { Draggable } from 'gsap/Draggable'
 // import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import router from '@/router'
@@ -27,7 +29,7 @@ import App from './app/App.vue'
 
 // Service worker (works only in production mode)
 require('@/utils/ServiceWorker')
-// gsap.registerPlugin(Draggable, InertiaPlugin)
+gsap.registerPlugin(SplitText, ScrollTrigger)
 
 const md = new MobileDetect(window.navigator.userAgent)
 const store = getStore()
@@ -46,6 +48,7 @@ const isIpadOS = () => {
 }
 
 const $mobile = md.mobile() || isIOS() || isIpadOS()
+const $phone = md.phone() !== null
 
 // Register global directives and components
 RegisterPlugin.registerDirectives(app, directives)
@@ -66,7 +69,7 @@ const startup = async () => {
     $eventBus,
     $devMode,
     $mobile,
-    $phone: md.phone() !== null,
+    $phone,
     Events,
     Ease,
     ImageFormat,

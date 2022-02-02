@@ -1,9 +1,11 @@
 import { defineComponent } from 'vue'
 import { gsap } from 'gsap/all'
+import { Lethargy } from 'lethargy'
 // import Draggable from 'gsap/Draggable'
 import AbstractPage from '@/pages/AbstractPage'
 import ImageAnimation from '@/components/Utils/ImageAnimation/ImageAnimation.vue'
 
+const lethargy = new Lethargy()
 export default defineComponent({
   name: 'Homepage',
   extends: AbstractPage,
@@ -14,6 +16,11 @@ export default defineComponent({
       canScroll: true,
       projects: [
         {
+          format: this.ImageFormat.LANDSCAPE,
+          src: this.getVersioned('placeholders/landscape.jpg')
+        },
+
+        {
           format: this.ImageFormat.PORTRAIT,
           src: this.getVersioned('placeholders/portrait.jpg')
         },
@@ -21,11 +28,6 @@ export default defineComponent({
         {
           format: this.ImageFormat.SQUARE,
           src: this.getVersioned('placeholders/square.jpg')
-        },
-
-        {
-          format: this.ImageFormat.LANDSCAPE,
-          src: this.getVersioned('placeholders/landscape.jpg')
         }
       ]
     }
@@ -33,11 +35,14 @@ export default defineComponent({
   watch: {
     index() {
       const { index, sh } = this
-      const { scroller } = this.$refs
-      gsap.to(scroller, {
+      const { content } = this.$refs
+      gsap.to(content, {
         duration: 1.5,
         ease: this.Ease.BEZIER_IN_OUT,
-        y: `-${sh * index}`
+        y: `-${sh * index}`,
+        onComplete: () => {
+          this.canScroll = true
+        }
       })
     }
   },
@@ -45,26 +50,38 @@ export default defineComponent({
     await this.$nextTick()
     this.initialize()
   },
+  beforeUnmount() {
+    this.$el.removeEventListener('mousewheel', this.onMouseWheel)
+    this.$el.removeEventListener('DOMMouseScroll', this.onMouseWheel)
+    this.$el.removeEventListener('wheel', this.onMouseWheel)
+    this.$el.removeEventListener('MozMousePixelScroll', this.onMouseWheel)
+  },
   methods: {
     initialize() {
       this.addListeners()
     },
     addListeners() {
-      window.addEventListener('mousewheel', this.onMouseWheel, false)
+      this.$el.addEventListener('wheel', this.onMouseWheel, { passive: false })
     },
     // Events
-    async onMouseWheel(e) {
+    onMouseWheel(e) {
+      e.preventDefault()
+      e.stopPropagation()
+
       if (!this.canScroll) return
 
-      this.canScroll = false
-      const direction = e.wheelDelta < 0 ? 1 : -1
-      const next = this.index + direction
+      const inertia = lethargy.check(e)
 
-      // only if the value changes
-      if (next !== this.index) {
-        this.index = next < 0 ? 0 : next >= this.projects.length ? this.projects.length - 1 : next
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-        this.canScroll = true
+      if (inertia !== false) {
+        const direction = e.wheelDelta < 0 ? 1 : -1
+        const next = this.index + direction
+
+        // only if the value changes
+        if (next !== this.index) {
+          this.index = next < 0 ? 0 : next >= this.projects.length ? this.projects.length - 1 : next
+          this.canScroll = false
+          console.log(this.index)
+        }
       }
     }
   }

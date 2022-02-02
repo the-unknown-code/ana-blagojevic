@@ -6,6 +6,19 @@
   box-sizing: border-box;
 }
 
+
 html {
-  cursor: none;
+  @apply text-black;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+.h-screen {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }

@@ -11,6 +11,11 @@ export const SET_MEDIA_STATE = `${namespace}/setMediaState`
 export const SET_THEME_MODE = `${namespace}/setThemeMode`
 export const SET_MENU_STATE = `${namespace}/setMenuState`
 
+const ABOUT_API = 'https://back.anablagojevic.com/about'
+const PROJECTS_API = 'https://back.anablagojevic.com/projects'
+const CATEGORIES_API = 'https://back.anablagojevic.com/categories'
+const RESOURCES_API = 'https://back.anablagojevic.com/resources'
+
 // Actions
 export const CHANGE_LOCALE = `${namespace}/changeLocale`
 

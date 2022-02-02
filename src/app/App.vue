@@ -3,7 +3,6 @@
   <router-view />
   <Footer />
   <Navigation />
-  <DebugInfo v-if="$devMode" />
   <MouseTrail v-if="!$mobile" />
 </template>
 
