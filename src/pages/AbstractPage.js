@@ -16,6 +16,9 @@ export default defineComponent({
       sh: (state) => state.Application.sh
     })
   },
+  beforeCreate() {
+    window.scrollTo(0, 0)
+  },
   mounted() {
     document.dispatchEvent(new Event(this.Events.PAGE_CREATED))
     this.initPage()

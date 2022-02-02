@@ -15,7 +15,7 @@
     }
   }
   &.portrait {
-    width: var(--portraitWidth);
+    width: 100%;
     @supports (aspect-ratio: auto) {
       width: auto;
       aspect-ratio: 11/16;

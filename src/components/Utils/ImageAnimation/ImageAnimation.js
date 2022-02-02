@@ -26,11 +26,13 @@ export default defineComponent({
       const duration = 1.5
       const ease = this.Ease.BEZIER_IN_OUT
 
+      const yPos = this.$phone ? 15 : 45
+
       if (position <= 0) {
         gsap.to(this.$el, {
           duration,
           ease,
-          y: `${-this.position * 45}%`
+          y: `${-this.position * yPos}%`
         })
 
         gsap.to(image, {

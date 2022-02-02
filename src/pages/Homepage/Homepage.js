@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue'
 import { gsap } from 'gsap/all'
 import { Lethargy } from 'lethargy'
+import { swipedetect } from '@/utils/SwipeDetect'
 // import Draggable from 'gsap/Draggable'
 import AbstractPage from '@/pages/AbstractPage'
 import ImageAnimation from '@/components/Utils/ImageAnimation/ImageAnimation.vue'
@@ -14,18 +15,25 @@ export default defineComponent({
     return {
       index: 0,
       canScroll: true,
+      projectPosition: 0,
       projects: [
         {
+          title: 'Progetto Uno',
+          year: "'19",
           format: this.ImageFormat.LANDSCAPE,
           src: this.getVersioned('placeholders/landscape.jpg')
         },
 
         {
+          title: 'Lorem ipsum dolor amet',
+          year: '2019 - 2021',
           format: this.ImageFormat.PORTRAIT,
           src: this.getVersioned('placeholders/portrait.jpg')
         },
 
         {
+          title: 'Progetto 3',
+          year: '2010',
           format: this.ImageFormat.SQUARE,
           src: this.getVersioned('placeholders/square.jpg')
         }
@@ -39,11 +47,13 @@ export default defineComponent({
       gsap.to(content, {
         duration: 1.5,
         ease: this.Ease.BEZIER_IN_OUT,
-        y: `-${sh * index}`,
+        y: `-${100 * index}%`,
         onComplete: () => {
           this.canScroll = true
         }
       })
+
+      this.setProjectPosition()
     }
   },
   async mounted() {
@@ -58,12 +68,42 @@ export default defineComponent({
   },
   methods: {
     initialize() {
+      this.setProjectPosition()
       this.addListeners()
     },
+    setProjectPosition() {
+      const { index } = this
+      const $labels = this.$el.querySelectorAll('.project-label')
+      let totalWidth = 0
+
+      for (let i = 0; i <= index; i++) {
+        totalWidth += $labels[i].getBoundingClientRect().width / (i === index ? 2 : 1)
+        if (i !== index) totalWidth += 56
+      }
+
+      this.projectPosition = -totalWidth
+    },
     addListeners() {
-      this.$el.addEventListener('wheel', this.onMouseWheel, { passive: false })
+      if (!this.$mobile) {
+        this.$el.addEventListener('wheel', this.onMouseWheel, { passive: false })
+      } else {
+        swipedetect(this.$el, (swipedir) => {
+          if (!this.canScroll) return
+          // swipedir contains either "none", "left", "right", "up", or "down"
+          this.next(swipedir === 'up' ? 1 : -1)
+        })
+      }
     },
     // Events
+    next(direction) {
+      const next = this.index + direction
+
+      // only if the value changes
+      if (next !== this.index && next >= 0 && next < this.projects.length) {
+        this.index = next < 0 ? 0 : next >= this.projects.length ? this.projects.length - 1 : next
+        this.canScroll = false
+      }
+    },
     onMouseWheel(e) {
       e.preventDefault()
       e.stopPropagation()
@@ -74,14 +114,7 @@ export default defineComponent({
 
       if (inertia !== false) {
         const direction = e.wheelDelta < 0 ? 1 : -1
-        const next = this.index + direction
-
-        // only if the value changes
-        if (next !== this.index) {
-          this.index = next < 0 ? 0 : next >= this.projects.length ? this.projects.length - 1 : next
-          this.canScroll = false
-          console.log(this.index)
-        }
+        this.next(direction)
       }
     }
   }

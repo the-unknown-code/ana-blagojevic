@@ -1,8 +1,8 @@
 <template>
   <nav class="fixed top-0 left-0 w-full h-full bg-lightgray -translate-y-full" @mousemove="onMouseMove">
     <!-- Component template: Navigation -->
-    <div class="fullsize grid grid-cols-2">
-      <div class="flex justify-center">
+    <div class="fullsize grid md:grid-cols-2">
+      <div v-if="!$phone" class="flex justify-center">
         <div
           v-if="!$mobile"
           ref="thumb"
@@ -19,8 +19,8 @@
         </div>
       </div>
 
-      <div class="flex justify-start items-center">
-        <ul ref="ul" class="leading-none text-darkgray uppercase">
+      <div class="flex justify-center md:justify-start items-center">
+        <ul ref="ul" class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
           <li
             class="relative select-none overflow-hidden"
             v-for="(item, key) in nav"
@@ -46,8 +46,12 @@
 <script lang="js" src="./Navigation.js"></script>
 <style lang="scss" scoped>
 ul {
-  font-size: 8.5vw;
-  transform: translateX(-5vw);
+  font-size: 12vw;
+
+  @media screen and (min-width: 768px) {
+    font-size: 8.5vw;
+    transform: translateX(-5vw);
+  }
 
   @media screen and (min-width: 1920px) {
     font-size: 10rem;
