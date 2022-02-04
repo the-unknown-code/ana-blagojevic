@@ -9,8 +9,23 @@ export default defineComponent({
     return {
       projects: [
         {
+          format: this.ImageFormat.PORTRAIT,
+          src: this.getVersioned('placeholders/portrait.jpg'),
+          title: 'Lorem Ipsum'
+        },
+        {
           format: this.ImageFormat.LANDSCAPE,
           src: this.getVersioned('placeholders/landscape.jpg'),
+          title: 'Lorem Ipsum'
+        },
+        {
+          format: this.ImageFormat.SQUARE,
+          src: this.getVersioned('placeholders/square.jpg'),
+          title: 'Lorem Ipsum'
+        },
+        {
+          format: this.ImageFormat.PORTRAIT,
+          src: this.getVersioned('placeholders/portrait.jpg'),
           title: 'Lorem Ipsum'
         },
         {
@@ -21,32 +36,13 @@ export default defineComponent({
           src: this.getVersioned('placeholders/portrait.jpg'),
           title: 'Lorem Ipsum'
         },
-
-        {
-          format: this.ImageFormat.SQUARE,
-          src: this.getVersioned('placeholders/square.jpg'),
-          title: 'Lorem Ipsum'
-        },
         {
           spacer: true
         },
+
         {
           format: this.ImageFormat.LANDSCAPE,
           src: this.getVersioned('placeholders/landscape.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          spacer: true
-        },
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-
-        {
-          format: this.ImageFormat.SQUARE,
-          src: this.getVersioned('placeholders/square.jpg'),
           title: 'Lorem Ipsum'
         },
 

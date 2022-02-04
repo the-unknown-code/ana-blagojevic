@@ -25,6 +25,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.10.2",
     "gsap": "npm:@gsap/shockingly",
+    "hammerjs": "^2.0.8",
     "lethargy": "^1.0.9",
     "lodash": "^4.17.21",
     "mitt": "^2.1.0",

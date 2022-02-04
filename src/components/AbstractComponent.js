@@ -6,8 +6,8 @@ export default defineComponent({
   data() {
     return {
       scrollTriggerDefault: {
-        start: 'top 99%',
-        toggleActions: 'play none none reverse'
+        start: 'top 96%',
+        toggleActions: 'play none none none'
       }
     }
   },

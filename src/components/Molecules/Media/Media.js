@@ -15,7 +15,8 @@ export default defineComponent({
     delay: number().def(0),
     duration: number().def(1.35),
     parallax: bool().def(false),
-    debug: bool().def(false)
+    debug: bool().def(false),
+    cover: bool().def(false)
   },
   watch: {
     scrollOffset() {
@@ -24,12 +25,14 @@ export default defineComponent({
   },
   async mounted() {
     await this.$nextTick()
+    await this.$nextTick()
 
     const { duration, delay } = this
     const { holder, media } = this.$refs
 
-    gsap.set(holder, { scale: 1.1 })
+    gsap.set(holder, { scale: 1.5 })
     gsap.set(media, { y: '100%' })
+
     const timeline = gsap.timeline({
       scrollTrigger: {
         ...this.scrollTriggerDefault,
@@ -37,12 +40,13 @@ export default defineComponent({
       }
     })
 
-    timeline.to([holder, media], {
+    timeline.to([media, holder], {
       delay,
       duration,
       ease: this.Ease.BEZIER_IN_OUT,
       scale: 1,
-      y: 0
+      y: 0,
+      stagger: 0.1
     })
 
     setTimeout(this.setOffset, 150)

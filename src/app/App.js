@@ -31,6 +31,8 @@ export default defineComponent({
     onScrollHandler() {
       const y = window.pageYOffset || document.documentElement.scrollTop
       this.setScrollOffset({ x: 0, y })
+
+      this.$eventBus.$emit(this.Events.TOGGLE_HEADER, y <= 0)
       this.$eventBus.$emit(this.Events.SCROLL, { x: 0, y })
     },
     onResizeHandler() {

@@ -15,7 +15,11 @@
     }
   }
   &.portrait {
-    width: 100%;
+    width: calc(100% - 80px);
+    @media screen and (min-width: 768px) {
+      width: 100%;
+    }
+
     @supports (aspect-ratio: auto) {
       width: auto;
       aspect-ratio: 11/16;

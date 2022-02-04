@@ -2,16 +2,16 @@
   <article class="relative w-full h-full">
     <Container>
       <div class="flex flex-col justify-center items-center">
-        <h2 class="normal-case max-w-xl text-center mb-4">
+        <h2 class="normal-case max-w-xl text-center mb-4 font-serif">
           <Label label="The number you have dialed could not be reached" />
         </h2>
         <p class="description">
-          <Label label="2017 -2018" :delay="0.2" />
+          <Label label="2017 — 2018" :delay="0.2" />
         </p>
       </div>
       <Section class="flex justify-center">
-        <div class="w-full md:w-1/2">
-          <Media debug :src="this.getVersioned('placeholders/portrait.jpg')" :format="ImageFormat.PORTRAIT" :duration="2" parallax />
+        <div class="relative w-full md:w-1/2">
+          <Media :src="this.getVersioned('placeholders/portrait.jpg')" :format="ImageFormat.PORTRAIT" :duration="2" />
         </div>
       </Section>
       <Section class="flex justify-center">

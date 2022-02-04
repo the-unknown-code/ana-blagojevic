@@ -14,5 +14,6 @@ export const Events = {
   CLICK: 'click',
   RESIZE: 'resize',
   MOUSEMOVE: 'mousemove',
-  SCROLL: 'scroll'
+  SCROLL: 'scroll',
+  TOGGLE_HEADER: 'toggle-header'
 }

@@ -1,9 +1,13 @@
 <template>
   <article class="relative w-full h-full">
     <Container>
-      <Section>
-        <div class="relative grid md:grid-cols-2 md:mt-20">
-          <div></div>
+      <div class="mt-8">
+        <div class="relative grid md:grid-cols-2">
+          <div class="relative mb-12 md:mb-0">
+            <div class="md:w-2/3">
+              <Media :src="this.getVersioned('placeholders/ana-blagojevic.jpg')" :format="ImageFormat.PORTRAIT" :duration="2" />
+            </div>
+          </div>
           <div id="info">
             <h1 class="overflow-hidden w-full flex justify-start pointer-events-none mb-12">
               <AnimatedLabel ref="title" label="Bio" />
@@ -15,10 +19,10 @@
             </p>
           </div>
         </div>
-      </Section>
+      </div>
       <Section>
         <FullWidth>
-          <Media :src="this.getVersioned('placeholders/landscape.jpg')" :duration="2" parallax />
+          <Media :src="this.getVersioned('placeholders/about.jpg')" :duration="2" parallax />
         </FullWidth>
       </Section>
       <Section>

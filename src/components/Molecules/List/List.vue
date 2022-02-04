@@ -6,12 +6,16 @@
     <div v-for="(item, key) in list" :key="key" class="relative grid grid-cols-4 py-4">
       <div class="col-span-3">
         <p class="description pr-6 md:pr-10">
-          <Label :label="item.title" />
+          <small>
+            <Label :label="item.title" />
+          </small>
         </p>
       </div>
       <div class="text-right">
         <p class="description">
-          <Label :label="item.year" :delay="0.1" />
+          <small>
+            <Label :label="item.year" :delay="0.1" />
+          </small>
         </p>
       </div>
       <div class="absolute w-full bottom-0">

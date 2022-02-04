@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import SmoothScrollbar from 'smooth-scrollbar'
+// import SmoothScrollbar from 'smooth-scrollbar'
 
 export default defineComponent({
   name: 'AbstractPage',
@@ -19,9 +19,13 @@ export default defineComponent({
   beforeCreate() {
     window.scrollTo(0, 0)
   },
-  mounted() {
+  async mounted() {
     document.dispatchEvent(new Event(this.Events.PAGE_CREATED))
     this.initPage()
+    await this.$nextTick()
+    setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, 100)
   },
   beforeUnmount() {
     // SmoothScrollbar.destroyAll()

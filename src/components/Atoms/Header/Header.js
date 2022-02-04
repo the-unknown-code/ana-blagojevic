@@ -9,13 +9,32 @@ export default defineComponent({
   extends: AbstractComponent,
   data() {
     return {
-      canClick: true
+      canClick: true,
+      previousToggle: true,
+      toggle: true
     }
+  },
+  watch: {
+    menuState() {
+      if (this.menuState) {
+        this.previousToggle = this.toggle
+        this.toggle = true
+      } else {
+        this.toggle = this.previousToggle
+      }
+    }
+  },
+  created() {
+    this.$eventBus.$on(this.Events.TOGGLE_HEADER, this.onToggleHeader)
   },
   methods: {
     ...mapMutations({
       setMenuState: SET_MENU_STATE
     }),
+    onToggleHeader(toggle) {
+      if (!this.menuState) this.toggle = toggle
+      else this.previousToggle = toggle
+    },
     async onMenuClick() {
       if (!this.canClick) return
       this.canClick = false

@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { gsap } from 'gsap/all'
 import { Lethargy } from 'lethargy'
-import { swipedetect } from '@/utils/SwipeDetect'
+import Hammer from 'hammerjs'
 // import Draggable from 'gsap/Draggable'
 import AbstractPage from '@/pages/AbstractPage'
 import ImageAnimation from '@/components/Utils/ImageAnimation/ImageAnimation.vue'
@@ -13,6 +13,7 @@ export default defineComponent({
   components: { ImageAnimation },
   data() {
     return {
+      previous: -1,
       index: 0,
       canScroll: true,
       projectPosition: 0,
@@ -42,14 +43,17 @@ export default defineComponent({
   },
   watch: {
     index() {
-      const { index, sh } = this
+      const { index } = this
       const { content } = this.$refs
+
+      this.$eventBus.$emit(this.Events.TOGGLE_HEADER, index === 0)
+
       gsap.to(content, {
         duration: 1.5,
         ease: this.Ease.BEZIER_IN_OUT,
         y: `-${100 * index}%`,
         onComplete: () => {
-          this.canScroll = true
+          // this.canScroll = true
         }
       })
 
@@ -61,10 +65,10 @@ export default defineComponent({
     this.initialize()
   },
   beforeUnmount() {
-    this.$el.removeEventListener('mousewheel', this.onMouseWheel)
-    this.$el.removeEventListener('DOMMouseScroll', this.onMouseWheel)
-    this.$el.removeEventListener('wheel', this.onMouseWheel)
-    this.$el.removeEventListener('MozMousePixelScroll', this.onMouseWheel)
+    window.removeEventListener('mousewheel', this.onMouseWheel)
+    window.removeEventListener('DOMMouseScroll', this.onMouseWheel)
+    window.removeEventListener('wheel', this.onMouseWheel)
+    window.removeEventListener('MozMousePixelScroll', this.onMouseWheel)
   },
   methods: {
     initialize() {
@@ -72,7 +76,9 @@ export default defineComponent({
       this.addListeners()
     },
     setProjectPosition() {
-      const { index } = this
+      const { previous, index } = this
+      const { projects, skew } = this.$refs
+
       const $labels = this.$el.querySelectorAll('.project-label')
       let totalWidth = 0
 
@@ -82,37 +88,69 @@ export default defineComponent({
       }
 
       this.projectPosition = -totalWidth
+
+      const timeline = new gsap.timeline()
+      timeline.to(projects, {
+        duration: 1.25,
+        ease: this.Ease.BEZIER_IN_OUT,
+        x: this.projectPosition
+      })
+
+      timeline.to(
+        skew,
+        {
+          duration: 1,
+          ease: 'expo.out',
+          skewX: previous < index ? 15 : -15
+        },
+        '<'
+      )
+
+      timeline.to(
+        skew,
+        {
+          duration: 0.5,
+          ease: 'power2.out',
+          skewX: 0
+        },
+        '-=.5'
+      )
     },
     addListeners() {
       if (!this.$mobile) {
-        this.$el.addEventListener('wheel', this.onMouseWheel, { passive: false })
+        window.addEventListener('wheel', this.onMouseWheel, { passive: false })
+        window.addEventListener('mousewheel', this.onMouseWheel, { passive: false })
+        window.addEventListener('DOMMouseScroll', this.onMouseWheel, { passive: false })
+        window.addEventListener('MozMousePixelScroll', this.onMouseWheel, { passive: false })
       } else {
-        swipedetect(this.$el, (swipedir) => {
-          if (!this.canScroll) return
-          // swipedir contains either "none", "left", "right", "up", or "down"
-          this.next(swipedir === 'up' ? 1 : -1)
+        const hammertime = new Hammer(this.$el)
+        hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL })
+        hammertime.on('swipe', ({ direction }) => {
+          this.next(direction === Hammer.DIRECTION_UP ? 1 : -1)
         })
       }
     },
     // Events
-    next(direction) {
+    async next(direction) {
       const next = this.index + direction
 
       // only if the value changes
       if (next !== this.index && next >= 0 && next < this.projects.length) {
+        this.previous = this.index
         this.index = next < 0 ? 0 : next >= this.projects.length ? this.projects.length - 1 : next
         this.canScroll = false
+        await new Promise((resolve) => setTimeout(resolve, 550))
+        this.canScroll = true
       }
     },
     onMouseWheel(e) {
       e.preventDefault()
       e.stopPropagation()
 
-      if (!this.canScroll) return
-
       const inertia = lethargy.check(e)
 
       if (inertia !== false) {
+        if (!this.canScroll) return
         const direction = e.wheelDelta < 0 ? 1 : -1
         this.next(direction)
       }
