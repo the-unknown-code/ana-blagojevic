@@ -2,7 +2,12 @@
   <header class="fixed top-0 w-full z-50 py-4 px-8 select-none mix-blend-difference">
     <div class="relative w-full flex justify-between">
       <div :class="['relative z-10', canClick ? 'pointer-events-auto' : 'pointer-events-none']">
-        <p class="relative leading-none flex flex-col overflow-hidden h-4 uppercase text-white whitespace-nowrap cursor-pointer" @click.prevent="onMenuClick">
+        <p
+          class="relative leading-none flex flex-col overflow-hidden h-4 uppercase text-white whitespace-nowrap cursor-pointer"
+          @click.prevent="onMenuClick"
+          @mouseenter.native="onLinkOver"
+          @mouseleave.native="onLinkOut"
+        >
           <span :class="['block default-transition', menuState ? '-translate-y-full' : 'translate-y-0']">
             <Label label="menu" />
           </span>

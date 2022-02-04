@@ -51,10 +51,7 @@ export default defineComponent({
       gsap.to(content, {
         duration: 1.5,
         ease: this.Ease.BEZIER_IN_OUT,
-        y: `-${100 * index}%`,
-        onComplete: () => {
-          // this.canScroll = true
-        }
+        y: `-${100 * index}%`
       })
 
       this.setProjectPosition()
@@ -122,6 +119,8 @@ export default defineComponent({
         window.addEventListener('mousewheel', this.onMouseWheel, { passive: false })
         window.addEventListener('DOMMouseScroll', this.onMouseWheel, { passive: false })
         window.addEventListener('MozMousePixelScroll', this.onMouseWheel, { passive: false })
+
+        this.$el.addEventListener('touchstart', this.preventDefault, { passive: false })
       } else {
         const hammertime = new Hammer(this.$el)
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL })
@@ -129,6 +128,10 @@ export default defineComponent({
           this.next(direction === Hammer.DIRECTION_UP ? 1 : -1)
         })
       }
+    },
+    preventDefault(e) {
+      e.preventDefault()
+      e.stopPropagation()
     },
     // Events
     async next(direction) {

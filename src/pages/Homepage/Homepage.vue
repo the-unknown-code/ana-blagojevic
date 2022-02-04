@@ -1,5 +1,5 @@
 <template>
-  <div class="relative fullsize overflow-hidden bg-white">
+  <div class="fullsize overflow-hidden bg-white" data-position="absolute">
     <!-- <Image :format="ImageFormat.LANDSCAPE" :src="getVersioned('placeholders/01.jpg')" /> -->
     <div ref="content" class="relative w-full h-full">
       <ImageAnimation v-for="(image, key) in projects" :key="key" :position="key - index">
@@ -13,7 +13,12 @@
             <Label :label="item.title" class="pb-2" :delay="key * 0.1" />
           </h2>
         </div>
-        <h2 v-for="(item, key) in projects" :key="key" :data-extra="item.year" class="relative project-label font-serif mr-14 whitespace-nowrap normal-case">
+        <h2
+          v-for="(item, key) in projects"
+          :key="key"
+          :data-extra="item.year"
+          :class="['relative project-label font-serif mr-14 whitespace-nowrap normal-case tra duration-500 ease-out', index === key ? 'skew-x-12' : '']"
+        >
           <Label :label="item.title" class="pb-2" :delay="key * 0.1" />
         </h2>
         <div class="absolute w-full flex flex-nowrap items-center top-0 translate-x-full">

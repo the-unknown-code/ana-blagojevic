@@ -18,5 +18,13 @@ export default defineComponent({
       menuState: (state) => state.Application.menuState,
       scrollOffset: (state) => state.Application.scrollOffset
     })
+  },
+  methods: {
+    onLinkOver() {
+      this.$eventBus.$emit(this.TOGGLE_LINK, true)
+    },
+    onLinkOut() {
+      this.$eventBus.$emit(this.TOGGLE_LINK, false)
+    }
   }
 })

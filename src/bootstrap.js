@@ -70,6 +70,7 @@ const startup = async () => {
     $devMode,
     $mobile,
     $phone,
+    $routerClick: { active: false },
     Events,
     Ease,
     ImageFormat,

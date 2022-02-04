@@ -28,6 +28,7 @@ export default defineComponent({
           src: this.getVersioned('placeholders/portrait.jpg'),
           title: 'Lorem Ipsum'
         },
+
         {
           spacer: true
         },
@@ -47,16 +48,9 @@ export default defineComponent({
         },
 
         {
-          spacer: true
-        },
-
-        {
-          format: this.ImageFormat.SQUARE,
-          src: this.getVersioned('placeholders/square.jpg'),
+          format: this.ImageFormat.PORTRAIT,
+          src: this.getVersioned('placeholders/portrait.jpg'),
           title: 'Lorem Ipsum'
-        },
-        {
-          spacer: true
         },
         {
           format: this.ImageFormat.LANDSCAPE,
@@ -73,8 +67,24 @@ export default defineComponent({
         },
 
         {
-          format: this.ImageFormat.SQUARE,
-          src: this.getVersioned('placeholders/square.jpg'),
+          format: this.ImageFormat.PORTRAIT,
+          src: this.getVersioned('placeholders/portrait.jpg'),
+          title: 'Lorem Ipsum'
+        },
+        {
+          spacer: true
+        },
+        {
+          format: this.ImageFormat.PORTRAIT,
+          src: this.getVersioned('placeholders/portrait.jpg'),
+          title: 'Lorem Ipsum'
+        },
+        {
+          spacer: true
+        },
+        {
+          format: this.ImageFormat.PORTRAIT,
+          src: this.getVersioned('placeholders/portrait.jpg'),
           title: 'Lorem Ipsum'
         }
       ]

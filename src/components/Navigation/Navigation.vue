@@ -33,7 +33,7 @@
             "
             @mouseout.prevent="hover = false"
           >
-            <router-link class="relative block li" :to="{ name: item.route, params: { lang: 'en' } }" :title="item.label">
+            <router-link @click.native="onRouteClick" class="relative block li" :to="{ name: item.route, params: { lang: 'en' } }" :title="item.label">
               <AnimatedLabel rollover :label="item.label" class="relative" />
             </router-link>
           </li>

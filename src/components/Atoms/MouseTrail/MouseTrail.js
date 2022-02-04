@@ -7,12 +7,31 @@ import AbstractComponent from '@/components/AbstractComponent'
 export default defineComponent({
   name: 'MouseTrail',
   extends: AbstractComponent,
+  data() {
+    return {
+      link: false
+    }
+  },
+  watch: {
+    link() {
+      gsap.killTweensOf(this.$refs.scale)
+      gsap.to(this.$refs.scale, {
+        duration: 2,
+        ease: 'elastic.out',
+        scale: this.link ? 1.5 : 1
+      })
+    }
+  },
   mounted() {
+    this.$eventBus.$on(this.TOGGLE_LINK, this.onToggleLink)
     window.addEventListener(this.Events.MOUSEMOVE, this.onMouseMove, false)
     this.speed = new MouseSpeed()
     this.speed.init(this.onMouseSpeedCalculation)
   },
   methods: {
+    onToggleLink(link) {
+      this.link = link
+    },
     onMouseSpeedCalculation() {
       const { speedX, speedY } = this.speed
       const speed = speedX + speedY

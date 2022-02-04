@@ -68,6 +68,9 @@ export default defineComponent({
     this.$items = this.$el.querySelectorAll('.li')
   },
   methods: {
+    onRouteClick() {
+      this.$routerClick.active = true
+    },
     onMouseMove({ clientY, clientX }) {
       if (this.$mobile) return
 

@@ -15,5 +15,6 @@ export const Events = {
   RESIZE: 'resize',
   MOUSEMOVE: 'mousemove',
   SCROLL: 'scroll',
-  TOGGLE_HEADER: 'toggle-header'
+  TOGGLE_HEADER: 'toggle-header',
+  TOGGLE_LINK: 'toggle-link'
 }

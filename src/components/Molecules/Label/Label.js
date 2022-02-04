@@ -19,10 +19,7 @@ export default defineComponent({
     this.timeline = gsap.timeline({
       scrollTrigger: {
         ...this.scrollTriggerDefault,
-        trigger: this.$el,
-        onEnter: () => {
-          console.log('-')
-        }
+        trigger: this.$el
       }
     })
 

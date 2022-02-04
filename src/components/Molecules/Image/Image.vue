@@ -1,6 +1,6 @@
 <template>
   <div :class="['v-image relative h-full overflow-hidden', format]">
-    <img class="fullsize object-contain md:object-cover object-center select-none" draggable="false" :src="src" />
+    <img class="fullsize object-contain md:object-cover object-center select-none" draggable="false" :src="src" @mouseenter.native="onLinkOver" @mouseleave.native="onLinkOut" />
   </div>
 </template>
 
