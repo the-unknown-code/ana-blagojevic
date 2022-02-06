@@ -1,12 +1,16 @@
 // Vue @component
 import { defineComponent } from 'vue'
+import { mapMutations } from 'vuex'
+import { gsap } from 'gsap/all'
 import AbstractPage from '@/pages/AbstractPage'
+import { SET_LOADING_STATE } from '@/store/modules/Application'
 
 export default defineComponent({
   name: 'Projects',
   extends: AbstractPage,
   data() {
     return {
+      isLoading: false,
       projects: [
         {
           format: this.ImageFormat.PORTRAIT,
@@ -93,5 +97,21 @@ export default defineComponent({
   async mounted() {
     await this.$nextTick()
     this.$refs.title.toggleAnimation(true, 1)
+  },
+  methods: {
+    ...mapMutations({
+      setLoadingState: SET_LOADING_STATE
+    }),
+    async openProject() {
+      this.$routerClick.active = true
+      gsap.to(this.$refs.h1, {
+        duration: 1.5,
+        ease: 'power2.inOut',
+        x: '-100%'
+      })
+      this.setLoadingState(true)
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+      this.$router.push({ name: this.RouteNames.PROJECT, params: { id: 'id', lang: 'en' } })
+    }
   }
 })

@@ -1,10 +1,12 @@
 import { defineComponent } from 'vue'
+import { mapMutations } from 'vuex'
 import { gsap } from 'gsap/all'
 import { Lethargy } from 'lethargy'
 import Hammer from 'hammerjs'
 // import Draggable from 'gsap/Draggable'
 import AbstractPage from '@/pages/AbstractPage'
 import ImageAnimation from '@/components/Utils/ImageAnimation/ImageAnimation.vue'
+import { SET_LOADING_STATE } from '@/store/modules/Application'
 
 const lethargy = new Lethargy()
 export default defineComponent({
@@ -68,9 +70,18 @@ export default defineComponent({
     window.removeEventListener('MozMousePixelScroll', this.onMouseWheel)
   },
   methods: {
+    ...mapMutations({
+      setLoadingState: SET_LOADING_STATE
+    }),
     initialize() {
       this.setProjectPosition()
       this.addListeners()
+    },
+    async openProject() {
+      this.$routerClick.active = true
+      this.setLoadingState(true)
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+      this.$router.push({ name: this.RouteNames.PROJECT, params: { id: 'id', lang: 'en' } })
     },
     setProjectPosition() {
       const { previous, index } = this
@@ -98,7 +109,7 @@ export default defineComponent({
         {
           duration: 1,
           ease: 'expo.out',
-          skewX: previous < index ? 15 : -15
+          skewX: previous < index ? 20 : -20
         },
         '<'
       )

@@ -19,7 +19,7 @@
       <div></div>
       <div class="relative z-10 text-right whitespace-nowrap">
         <p class="uppercase text-white leading-none">
-          <Label label="® 2021" :delay="0.1" />
+          <Label label="® 2022" :delay="0.1" />
         </p>
       </div>
     </div>
@@ -32,7 +32,7 @@
     ]"
   >
     <router-link :to="{ name: RouteNames.HOMEPAGE, params: { lang: 'en' } }">
-      <p class="relative uppercase text-black leading-none px-2 md:px-4 text-5xl md:text-base">
+      <p class="relative uppercase text-darkgray leading-none px-2 md:px-4 text-5xl md:text-base">
         <Label label="Ana<br/>Blagojevic" class="md:hidden" />
         <Label label="Ana Blagojevic" class="hidden md:block" />
       </p>

@@ -1,27 +1,30 @@
 <template>
   <div class="fullsize overflow-hidden bg-white" data-position="absolute">
     <!-- <Image :format="ImageFormat.LANDSCAPE" :src="getVersioned('placeholders/01.jpg')" /> -->
-    <div ref="content" class="relative w-full h-full">
+    <div ref="content" class="relative w-full h-full" @click="openProject">
       <ImageAnimation v-for="(image, key) in projects" :key="key" :position="key - index">
         <Image :format="image.format" :src="image.src" />
       </ImageAnimation>
     </div>
-    <div ref="projects" class="absolute pointer-events-none bottom-0 flex flex-nowrap items-center left-1/2 pb-2 md:pb-4">
+    <div ref="projects" class="absolute bottom-0 flex flex-nowrap items-center left-1/2 pb-2 md:pb-4">
       <div ref="skew" class="relative w-full flex flex-nowrap items-center">
-        <div class="absolute w-full flex flex-nowrap items-center top-0 -translate-x-full pb-2">
+        <div class="absolute pointer-events-none w-full flex flex-nowrap items-center top-0 -translate-x-full pb-2">
           <h2 c v-for="(item, key) in projects" :key="key" :data-extra="item.year" class="relative project-label font-serif mr-14 whitespace-nowrap normal-case">
             <Label :label="item.title" class="pb-2" :delay="key * 0.1" />
           </h2>
         </div>
         <h2
+          @mouseenter.native="onLinkOver"
+          @mouseleave.native="onLinkOut"
+          @click="openProject"
           v-for="(item, key) in projects"
           :key="key"
           :data-extra="item.year"
-          :class="['relative project-label font-serif mr-14 whitespace-nowrap normal-case tra duration-500 ease-out', index === key ? 'skew-x-12' : '']"
+          :class="['relative cursor-pointer project-label font-serif mr-14 whitespace-nowrap normal-case tra duration-500 ease-out', index === key ? '-skew-x-12' : '']"
         >
           <Label :label="item.title" class="pb-2" :delay="key * 0.1" />
         </h2>
-        <div class="absolute w-full flex flex-nowrap items-center top-0 translate-x-full">
+        <div class="absolute pointer-events-none w-full flex flex-nowrap items-center top-0 translate-x-full">
           <h2 v-for="(item, key) in projects" :key="key" :data-extra="item.year" class="relative project-label font-serif mr-14 whitespace-nowrap normal-case">
             <Label :label="item.title" class="pb-2" :delay="key * 0.1" />
           </h2>

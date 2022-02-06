@@ -25,6 +25,8 @@
             class="relative select-none overflow-hidden"
             v-for="(item, key) in nav"
             :key="key"
+            @mouseenter.native="onLinkOver"
+            @mouseleave.native="onLinkOut"
             @mouseover.prevent="
               () => {
                 hover = true
@@ -38,6 +40,30 @@
             </router-link>
           </li>
         </ul>
+      </div>
+    </div>
+    <div class="absolute bottom-0 w-full px-8 pb-8">
+      <div class="grid text-center md:grid-cols-3 uppercase text-2xl md:text-base">
+        <div class="md:text-left">
+          <p class="relative">
+            <small>Codice Fiscale</small>
+          </p>
+        </div>
+        <div class="md:text-center hidden md:block">
+          <p class="relative">
+            <small>Italiano / English</small>
+          </p>
+        </div>
+        <div class="md:text-right">
+          <p class="relative">
+            <small>Credits</small>
+          </p>
+        </div>
+        <div class="md:text-center pt-8 md:hidden">
+          <p class="relative">
+            <small>Italiano / English</small>
+          </p>
+        </div>
       </div>
     </div>
   </nav>

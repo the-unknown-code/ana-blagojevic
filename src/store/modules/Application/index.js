@@ -11,6 +11,7 @@ export const SET_SCROLL_OFFSET = `${namespace}/setStage`
 export const SET_MEDIA_STATE = `${namespace}/setMediaState`
 export const SET_THEME_MODE = `${namespace}/setThemeMode`
 export const SET_MENU_STATE = `${namespace}/setMenuState`
+export const SET_LOADING_STATE = `${namespace}/setLoadingState`
 
 const ABOUT_API = 'https://back.anablagojevic.com/about'
 const PROJECTS_API = 'https://back.anablagojevic.com/projects'
@@ -25,6 +26,7 @@ export default {
     themeMode: null,
     locale: null,
     mediaState: null,
+    loadingState: false,
     scrollOffset: { x: 0, y: 0 },
     sw: window.innerWidth,
     sh: window.innerHeight,
@@ -35,6 +37,9 @@ export default {
     [SET_STAGE](state, { sw, sh }) {
       state.sw = sw
       state.sh = sh
+    },
+    [SET_LOADING_STATE](state, loadingState) {
+      state.loadingState = loadingState
     },
     [SET_SCROLL_OFFSET](state, { x, y }) {
       state.scrollOffset = { x, y }

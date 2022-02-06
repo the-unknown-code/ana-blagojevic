@@ -1,27 +1,33 @@
 import { defineComponent } from 'vue'
-import { mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { gsap } from 'gsap/all'
-import { SET_STAGE, SET_SCROLL_OFFSET, CHANGE_LOCALE, SET_MENU_STATE } from '@/store/modules/Application'
+import { SET_STAGE, SET_SCROLL_OFFSET, SET_LOADING_STATE, CHANGE_LOCALE, SET_MENU_STATE } from '@/store/modules/Application'
 import Navigation from '@/components/Navigation/Navigation.vue'
 import Header from '@/components/Atoms/Header/Header.vue'
 import Footer from '@/components/Atoms/Footer/Footer.vue'
 import MouseTrail from '@/components/Atoms/MouseTrail/MouseTrail.vue'
+import Loading from '@/components/Atoms/Loading/Loading.vue'
 
 export default defineComponent({
   name: 'App',
-  components: { Navigation, Header, Footer, MouseTrail },
+  components: { Navigation, Header, Footer, MouseTrail, Loading },
+  computed: {
+    ...mapState({
+      loadingState: (state) => state.Application.loadingState
+    })
+  },
+  watch: {
+    $route() {
+      this.setMenuState(false)
+      this.setLoadingState(false)
+    }
+  },
   created() {
     window.addEventListener(this.Events.SCROLL, this.onScrollHandler)
     window.addEventListener(this.Events.RESIZE, this.onResizeHandler)
     this.onResizeHandler()
   },
-  watch: {
-    $route() {
-      this.setMenuState(false)
-    }
-  },
-
   methods: {
     ...mapActions({
       changeLanguage: CHANGE_LOCALE
@@ -29,7 +35,8 @@ export default defineComponent({
     ...mapMutations({
       setMenuState: SET_MENU_STATE,
       setStage: SET_STAGE,
-      setScrollOffset: SET_SCROLL_OFFSET
+      setScrollOffset: SET_SCROLL_OFFSET,
+      setLoadingState: SET_LOADING_STATE
     }),
     beforeEnter($el) {
       window.scrollTo(0, 0)
@@ -37,10 +44,10 @@ export default defineComponent({
       if (this.$routerClick.active) gsap.set($el, { position: 'fixed', force3D: true, y: '100%' })
     },
     enter($el) {
-      this.$routerClick.active = false
       if (this.$route.name === this.RouteNames.HOMEPAGE) return
 
       gsap.to($el, {
+        delay: this.$route.name === this.RouteNames.PROJECT && this.$routerClick.active ? 0.35 : 0,
         duration: 1.5,
         ease: this.Ease.BEZIER_SLOW,
         y: 0,
@@ -53,6 +60,8 @@ export default defineComponent({
           gsap.set($el, { position })
         }
       })
+
+      this.$routerClick.active = false
     },
     beforeLeave(e) {},
     leave(e) {},
