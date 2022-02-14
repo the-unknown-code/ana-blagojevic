@@ -2,11 +2,11 @@
   <div class="w-full cursor-pointer" @mouseenter.native="onLinkOver" @mouseleave.native="onLinkOut" @click="openProject">
     <Section>
       <div class="flex flex-col justify-center items-center">
-        <h2 class="normal-case max-w-xl text-center mb-4">
-          <Label label="Associazione Interzona Spazio" />
+        <h2 class="normal-case max-w-xl text-center mb-4 font-serif">
+          <Label label="The number you have dialed could not be reached" />
         </h2>
-        <p class="description">
-          <Label label="17 - 21" :delay="0.2" />
+        <p class="subtitle text-darkgray">
+          <Label label="2017 — 2018" :delay="0.2" />
         </p>
       </div>
     </Section>

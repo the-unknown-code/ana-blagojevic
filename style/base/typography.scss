@@ -3,9 +3,14 @@ h1 {
 }
 
 h2 {
-    @apply uppercase text-3xl md:text-5xl text-darkgray;
+    @apply uppercase 2xl:text-title 2xl:leading-none text-darkgray;
 }
 
 .description {
-    @apply text-lg md:text-xl lg:text-2xl;
+    // @apply text-lg md:text-xl lg:text-2xl;
+    @apply font-medium antialiased  2xl:text-4xl 2xl:leading-12;
+}
+
+.subtitle {
+     @apply font-medium antialiased 2xl:text-xl;
 }

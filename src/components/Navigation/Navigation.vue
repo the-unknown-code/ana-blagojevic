@@ -22,7 +22,7 @@
       <div class="flex justify-center md:justify-start items-center">
         <ul ref="ul" class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
           <li
-            class="relative select-none overflow-hidden"
+            class="relative font-medium select-none overflow-hidden"
             v-for="(item, key) in nav"
             :key="key"
             @mouseenter.native="onLinkOver"
@@ -45,23 +45,23 @@
     <div class="absolute bottom-0 w-full px-8 pb-8">
       <div class="grid text-center md:grid-cols-3 uppercase text-2xl md:text-base">
         <div class="md:text-left">
-          <p class="relative">
-            <small>Codice Fiscale</small>
+          <p class="relative subtitle">
+            <span>Codice Fiscale</span>
           </p>
         </div>
         <div class="md:text-center hidden md:block">
-          <p class="relative">
-            <small>Italiano / English</small>
+          <p class="relative subtitle">
+            <span>Italiano / English</span>
           </p>
         </div>
         <div class="md:text-right">
-          <p class="relative">
-            <small>Credits</small>
+          <p class="relative subtitle">
+            <span>Credits</span>
           </p>
         </div>
         <div class="md:text-center pt-8 md:hidden">
-          <p class="relative">
-            <small>Italiano / English</small>
+          <p class="relative subtitle">
+            <span>Italiano / English</span>
           </p>
         </div>
       </div>
@@ -80,8 +80,8 @@ ul {
   }
 
   @media screen and (min-width: 1920px) {
-    font-size: 10rem;
-    transform: translateX(0);
+    font-size: 12rem;
+    transform: translateX(-5vw);
   }
 }
 
