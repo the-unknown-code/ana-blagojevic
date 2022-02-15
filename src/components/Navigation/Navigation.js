@@ -9,6 +9,7 @@ export default defineComponent({
   data() {
     return {
       $items: null,
+      isContacts: false,
       canClick: true,
       hover: false,
       selected: 0,
@@ -29,7 +30,7 @@ export default defineComponent({
           image: this.getVersioned('placeholders/menu-03.jpg')
         },
         {
-          route: 'contact',
+          action: 'contact',
           label: 'CONTACT',
           image: this.getVersioned('placeholders/menu-04.jpg')
         }
@@ -37,6 +38,22 @@ export default defineComponent({
     }
   },
   watch: {
+    isContacts() {
+      const { isContacts } = this
+      const { nav, contacts } = this.$refs
+
+      gsap.to(nav, {
+        duration: 1.15,
+        ease: this.Ease.BEZIER_IN_OUT,
+        y: isContacts ? '-100%' : 0
+      })
+
+      gsap.to(contacts, {
+        duration: 1.15,
+        ease: this.Ease.BEZIER_IN_OUT,
+        y: isContacts ? 0 : '100%'
+      })
+    },
     menuState() {
       gsap.killTweensOf(this.$el)
       gsap.killTweensOf(this.$items)
@@ -49,7 +66,10 @@ export default defineComponent({
         duration: 1,
         delay: this.menuState ? 0 : 0.35,
         ease: this.Ease.BEZIER_IN_OUT,
-        y: this.menuState ? 0 : '-100%'
+        y: this.menuState ? 0 : '-100%',
+        onComplete: () => {
+          this.isContacts = false
+        }
       })
 
       gsap.to(this.$items, {

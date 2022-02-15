@@ -13,7 +13,8 @@ module.exports = {
       white: colors.white,
       red: '#FF0000',
       lightgray: '#DBD7D0',
-      darkgray: '#403737'
+      darkgray: '#403737',
+      lightbeige: '#FDFDF5'
     },
     fontWeight: {
       hairline: 100,

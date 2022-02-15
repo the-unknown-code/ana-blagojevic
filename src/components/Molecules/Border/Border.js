@@ -9,7 +9,18 @@ export default defineComponent({
   extends: AbstractComponent,
   props: {
     label: VueTypes.string,
-    delay: VueTypes.number.def(0)
+    delay: VueTypes.number.def(0),
+    hover: VueTypes.bool.def(false)
+  },
+  watch: {
+    hover() {
+      const { foreground } = this.$refs
+      gsap.to(foreground, {
+        x: this.hover ? 0 : '-100%',
+        ease: this.Ease.BEZIER_IN_OUT,
+        duration: 1
+      })
+    }
   },
   async mounted() {
     await this.$nextTick()
@@ -22,9 +33,8 @@ export default defineComponent({
       }
     })
 
-    const { background, foreground } = this.$refs
-
-    this.timeline.from([background, foreground], {
+    const { background } = this.$refs
+    this.timeline.from([background], {
       delay,
       xPercent: -100,
       ease: this.Ease.BEZIER_IN_OUT,

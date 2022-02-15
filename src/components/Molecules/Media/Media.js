@@ -36,7 +36,8 @@ export default defineComponent({
     const timeline = gsap.timeline({
       scrollTrigger: {
         ...this.scrollTriggerDefault,
-        trigger: this.$el
+        trigger: this.$el,
+        start: 'top 110%'
       }
     })
 

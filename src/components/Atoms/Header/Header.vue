@@ -3,7 +3,7 @@
     <div class="relative w-full flex justify-between">
       <div :class="['relative z-10', canClick ? 'pointer-events-auto' : 'pointer-events-none']">
         <p
-          class="relative subtitle leading-none flex flex-col overflow-hidden h-6 uppercase text-white whitespace-nowrap cursor-pointer"
+          class="relativefont-medium subtitle leading-none flex flex-col overflow-hidden h-6 uppercase text-white whitespace-nowrap cursor-pointer"
           @click.prevent="onMenuClick"
           @mouseenter.native="onLinkOver"
           @mouseleave.native="onLinkOut"
@@ -18,7 +18,7 @@
       </div>
       <div></div>
       <div class="relative z-10 text-right whitespace-nowrap">
-        <p class="subtitle uppercase text-white leading-none">
+        <p class="subtitle uppercase font-medium text-white leading-none">
           <Label label="® 2022" :delay="0.1" />
         </p>
       </div>
@@ -32,7 +32,7 @@
     ]"
   >
     <router-link :to="{ name: RouteNames.HOMEPAGE, params: { lang: 'en' } }">
-      <p class="relative subtitle uppercase text-darkgray leading-none px-2 md:px-4 md:text-base">
+      <p class="relative font-medium subtitle uppercase text-darkgray leading-none px-2 md:px-4 md:text-base">
         <Label label="Ana<br/>Blagojevic" class="md:hidden" />
         <Label label="Ana Blagojevic" class="hidden md:block" />
       </p>

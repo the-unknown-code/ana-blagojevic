@@ -1,5 +1,5 @@
 <template>
-  <div class="fullsize overflow-hidden bg-white" data-position="absolute">
+  <div class="fullsize overflow-hidden" data-position="absolute">
     <!-- <Image :format="ImageFormat.LANDSCAPE" :src="getVersioned('placeholders/01.jpg')" /> -->
     <div ref="content" class="relative w-full h-full" @click="openProject">
       <ImageAnimation v-for="(image, key) in projects" :key="key" :position="key - index">

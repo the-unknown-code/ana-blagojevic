@@ -10,7 +10,7 @@ export default defineComponent({
   extends: AbstractComponent,
   props: {
     label: VueTypes.string.isRequired,
-    duration: VueTypes.number.def(2),
+    duration: VueTypes.number.def(1.5),
     autoplay: VueTypes.bool.def(false)
   },
   data() {
@@ -30,8 +30,8 @@ export default defineComponent({
       duration,
       opacity: 0,
       y: '300%',
-      ease: 'power4.inOut',
-      stagger: 0.005
+      ease: 'power4.out',
+      stagger: 0.002
     })
 
     gsap.timeline(
