@@ -5,63 +5,67 @@
         <h2 class="normal-case max-w-xl text-center font-serif">
           <Label :label="project.name" />
         </h2>
-        <p class="subtitle text-darkgray 2xl:mt-12">
+        <p class="subtitle text-darkgray 2xl:mt-12 mt-8">
           <Label :label="project.year" :delay="0.2" />
         </p>
       </div>
       <Section class="flex justify-center">
         <div class="relative w-full md:w-1/2">
-          <Media :src="this.getVersioned('placeholders/portrait.jpg')" :format="ImageFormat.PORTRAIT" :duration="2" />
+          <Media :src="getAsset(project.cover.image.url)" :format="project.cover.ratio" :duration="2" />
         </div>
-      </Section>
-      <Section class="flex justify-center">
-        <p class="relative description">
-          <LineText
-            autoplay
-            label="My family moved to Italy from Yugoslavia when I was 3. I never had my own impression about Yugoslavia or Serbia, I only knew about them from the stories of my parents and relatives coming to visit. In 2012, when I was 24 I got deeply interested in independent music and started to photograph musical scene in Verona, my hometown in Italy. Then I decided to go to former Yugoslavia and do the same there. This way I wanted to form my own impression of the place. I was tired of relying on my parents memory. I wanted to understand where I’m coming from. After photographing Balkan underground musical scene for a few years I was confused.<br/><br/>I felt both Balkan and Italian, but neither was 100%. I felt that I missed something since the time I left the place where I was born."
-          />
-        </p>
-      </Section>
-      <Section>
-        <FullWidth class="pr-8 md:pr-32">
-          <Media :src="this.getVersioned('placeholders/landscape.jpg')" :format="ImageFormat.LANDSCAPE" :duration="2" parallax />
-        </FullWidth>
-      </Section>
-      <Section>
-        <FullWidth class="pl-8 md:pl-32">
-          <Media :src="this.getVersioned('placeholders/landscape.jpg')" :format="ImageFormat.LANDSCAPE" :duration="2" parallax />
-        </FullWidth>
-      </Section>
-      <Section class="flex justify-center">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-24">
-          <div class="w-full">
-            <Media :src="this.getVersioned('placeholders/portrait.jpg')" :format="ImageFormat.PORTRAIT" :duration="2" parallax />
-          </div>
-          <div class="w-full">
-            <Media :src="this.getVersioned('placeholders/portrait.jpg')" :format="ImageFormat.PORTRAIT" :duration="2" parallax />
-          </div>
-        </div>
-      </Section>
-      <Section class="flex justify-center">
-        <Media :src="this.getVersioned('placeholders/landscape.jpg')" :format="ImageFormat.LANDSCAPE" :duration="2" parallax />
-      </Section>
-      <Section class="flex justify-center">
-        <p class="description">
-          <LineText
-            autoplay
-            label="My family moved to Italy from Yugoslavia when I was 3. I never had my own impression about Yugoslavia or Serbia, I only knew about them from the stories of my parents and relatives coming to visit. In 2012, when I was 24 I got deeply interested in independent music and started to photograph musical scene in Verona, my hometown in Italy. Then I decided to go to former Yugoslavia and do the same there. This way I wanted to form my own impression of the place. I was tired of relying on my parents memory. I wanted to understand where I’m coming from. After photographing Balkan underground musical scene for a few years I was confused.<br/><br/>I felt both Balkan and Italian, but neither was 100%. I felt that I missed something since the time I left the place where I was born."
-          />
-        </p>
-      </Section>
-      <Section>
-        <FullWidth>
-          <Media :src="this.getVersioned('placeholders/landscape.jpg')" :format="ImageFormat.LANDSCAPE" :duration="2" parallax />
-        </FullWidth>
       </Section>
 
-      <ProjectThumbnail />
+      <template v-for="(item, key) in project.rows">
+        <Section v-if="item.__component === RowType.TEXT" class="flex justify-center">
+          <p class="relative description">
+            <LineText autoplay :label="item.text" />
+          </p>
+        </Section>
+        <Section v-else-if="item.__component === RowType.PORTRAIT" class="flex justify-center">
+          <template v-if="item.imageCenter">
+            <div class="grid mx-auto">
+              <Media :src="getAsset(item.imageCenter.url)" :format="ImageFormat.PORTRAIT" :duration="2" parallax :scale="1" />
+            </div>
+          </template>
+          <template v-else>
+            <div class="grid md:grid-cols-2 gap-12 md:gap-24">
+              <div class="w-full">
+                <Media v-if="item.imageLeft" :src="getAsset(item.imageLeft.url)" :format="ImageFormat.PORTRAIT" :duration="2" parallax :scale="1" />
+              </div>
+              <div class="w-full">
+                <Media v-if="item.imageRight" :src="getAsset(item.imageRight.url)" :format="ImageFormat.PORTRAIT" :duration="2" parallax :scale="1" />
+              </div>
+            </div>
+          </template>
+        </Section>
+        <Section v-else-if="item.__component === RowType.LANDSCAPE">
+          <FullWidth :class="getPadding(item.position)">
+            <Media :src="getAsset(item.image.url)" :format="ImageFormat.LANDSCAPE" :duration="2" parallax :scale="1" />
+          </FullWidth>
+        </Section>
+        <Section v-else-if="item.__component === RowType.VIDEO">
+          <FullWidth>
+            <div class="relative video-holder w-full h-0">
+              <iframe
+                :src="`https://player.vimeo.com/video/${getVideoId(item.link)}`"
+                class="absolute w-full h-full"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </FullWidth>
+        </Section>
+      </template>
+
+      <ProjectThumbnail :project="nextProject" />
     </Container>
   </article>
 </template>
 
 <script lang="js" src="./Project.js"></script>
+<style lang="scss" scoped>
+.video-holder {
+  padding-bottom: 56.25%;
+}
+</style>

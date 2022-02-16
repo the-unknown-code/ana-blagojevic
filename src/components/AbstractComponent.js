@@ -32,6 +32,12 @@ export default defineComponent({
     },
     getAsset(url) {
       return `https://back.anablagojevic.com${url}`
+    },
+    getSlug(label) {
+      return label
+        .toLowerCase()
+        .replace(/[^\w ]+/g, '')
+        .replace(/ +/g, '-')
     }
   }
 })

@@ -16,7 +16,8 @@ export default defineComponent({
     duration: number().def(1.35),
     parallax: bool().def(false),
     debug: bool().def(false),
-    cover: bool().def(false)
+    cover: bool().def(false),
+    scale: number().def(1.5)
   },
   watch: {
     scrollOffset() {
@@ -27,10 +28,10 @@ export default defineComponent({
     await this.$nextTick()
     await this.$nextTick()
 
-    const { duration, delay } = this
+    const { duration, delay, scale } = this
     const { holder, media } = this.$refs
 
-    gsap.set(holder, { scale: 1.5 })
+    gsap.set(holder, { scale })
     gsap.set(media, { y: '100%' })
 
     const timeline = gsap.timeline({

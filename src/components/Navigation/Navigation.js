@@ -17,22 +17,22 @@ export default defineComponent({
         {
           route: 'homepage',
           label: this.$global.resources.home,
-          image: this.getVersioned('placeholders/menu-01.jpg')
+          image: this.getAsset(this.$global.resources.homeImage.url)
         },
         {
           route: 'about',
           label: this.$global.resources.about,
-          image: this.getVersioned('placeholders/menu-02.jpg')
+          image: this.getAsset(this.$global.resources.aboutImage.url)
         },
         {
           route: 'projects',
           label: this.$global.resources.projects,
-          image: this.getVersioned('placeholders/menu-03.jpg')
+          image: this.getAsset(this.$global.resources.projectsImage.url)
         },
         {
           action: 'contact',
           label: this.$global.resources.contact,
-          image: this.getVersioned('placeholders/menu-04.jpg')
+          image: this.getAsset(this.$global.resources.contactImage.url)
         }
       ]
     }

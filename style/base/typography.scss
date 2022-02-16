@@ -3,11 +3,11 @@ h1 {
 }
 
 h2 {
-    @apply uppercase 2xl:text-title 2xl:leading-none text-darkgray;
+    @apply uppercase 2xl:text-title leading-none text-5xl text-darkgray;
 }
 
 h3 {
-    @apply uppercase 2xl:text-5xl 2xl:leading-none text-darkgray;
+    @apply uppercase 2xl:text-5xl leading-none md:text-3xl text-2xl text-darkgray;
 }
 
 .description {
@@ -20,5 +20,5 @@ h3 {
 }
 
 .list {
-     @apply font-medium antialiased 2xl:text-3xl;
+     @apply font-medium antialiased 2xl:text-3xl md:text-xl text-lg leading-tight;
 }

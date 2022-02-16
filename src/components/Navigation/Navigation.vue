@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="absolute bottom-0 w-full px-8 pb-8">
-        <div class="grid text-center md:grid-cols-3 uppercase text-2xl md:text-base">
+        <div class="grid text-center text-darkgray md:grid-cols-3 uppercase text-2xl md:text-base">
           <div class="md:text-left">
             <p class="relative subtitle">
               <span>{{ $global.resources.vat }}</span>
@@ -89,16 +89,16 @@
           </ul>
         </div>
       </div>
-      <div class="absolute bottom-0 w-full h-full grid md:grid-cols-2 2xl:p-16">
+      <div class="absolute bottom-0 w-full h-full grid md:grid-cols-2 2xl:p-16 md:p-12">
         <div class="flex justify-center md:justify-start items-end">
           <div class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
-            <div class="2xl:mb-12">
+            <div class="2xl:mb-12 mb-8">
               <span class="subtitle">{{ $global.resources.where }}</span>
             </div>
             <div>
               <h3 class="font-medium normal-case" v-html="$global.resources.address"></h3>
             </div>
-            <div class="2xl:mb-12 2xl:mt-32">
+            <div class="2xl:mb-12 2xl:mt-32 mb-8 mt-16">
               <span class="subtitle">{{ $global.resources.phone }}</span>
             </div>
             <div>
@@ -108,7 +108,7 @@
         </div>
         <div class="flex justify-center md:justify-start items-end">
           <ol class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
-            <li class="2xl:mb-12">
+            <li class="2xl:mb-12 mb-8">
               <span class="subtitle">{{ $global.resources.social }}</span>
             </li>
             <li>
@@ -138,7 +138,7 @@
             </li>
 
             -->
-            <li class="2xl:mb-12 2xl:mt-32">
+            <li class="2xl:mb-12 2xl:mt-32 mb-8 mt-16">
               <span class="subtitle">{{ $global.resources.mail }}</span>
             </li>
             <li>

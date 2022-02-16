@@ -3,16 +3,16 @@
     <Section>
       <div class="flex flex-col justify-center items-center">
         <h2 class="normal-case max-w-xl text-center font-serif">
-          <Label label="The number you have dialed could not be reached" />
+          <Label :label="project.name" />
         </h2>
-        <p class="subtitle text-darkgray 2xl:mt-12">
-          <Label label="2017 — 2018" :delay="0.2" />
+        <p class="subtitle text-darkgray 2xl:mt-12 mt-8">
+          <Label :label="project.year" :delay="0.2" />
         </p>
       </div>
     </Section>
     <Section class="flex justify-center">
       <div class="w-full md:w-1/2">
-        <Media debug :src="this.getVersioned('placeholders/landscape.jpg')" :format="ImageFormat.LANDSCAPE" :duration="2" parallax />
+        <Media debug :src="getAsset(project.cover.image.url)" :format="project.cover.ratio" :duration="2" parallax />
       </div>
     </Section>
   </div>
