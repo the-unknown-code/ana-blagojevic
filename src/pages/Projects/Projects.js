@@ -103,7 +103,7 @@ export default defineComponent({
     ...mapMutations({
       setLoadingState: SET_LOADING_STATE
     }),
-    async openProject() {
+    async openProject(index) {
       this.$routerClick.active = true
       gsap.to(this.$refs.h1, {
         duration: 1.5,
@@ -112,7 +112,9 @@ export default defineComponent({
       })
       this.setLoadingState(true)
       await new Promise((resolve) => setTimeout(resolve, 1500))
-      this.$router.push({ name: this.RouteNames.PROJECT, params: { id: 'id', lang: 'en' } })
+
+      const slug = this.getSlug(this.$global.projects[index].name)
+      this.$router.push({ name: this.RouteNames.PROJECT, params: { id: slug, lang: 'en' } })
     }
   }
 })

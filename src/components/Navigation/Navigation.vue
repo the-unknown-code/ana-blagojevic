@@ -77,8 +77,8 @@
     </nav>
     <div ref="contacts" class="absolute w-full h-full inset-0 translate-y-full">
       <div class="top-0 left-0 absolute w-full h-full grid md:grid-cols-2">
-        <div></div>
-        <div class="flex justify-center md:justify-start items-center">
+        <div class="hidden md:block"></div>
+        <div class="flex justify-center md:justify-start md:items-center pt-48 md:pt-0">
           <ul ref="ul" class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
             <li class="relative font-medium select-none overflow-hidden pointer-events-none" @mouseenter.native="onLinkOver" @mouseleave.native="onLinkOut">
               <AnimatedLabel rollover :label="$global.resources.contact" class="relative" />
@@ -89,10 +89,48 @@
           </ul>
         </div>
       </div>
-      <div class="absolute bottom-0 w-full h-full grid md:grid-cols-2 2xl:p-16 md:p-12">
+
+      <div class="absolute md:hidden bottom-0 w-full h-full p-12">
+        <div class="flex justify-center items-end w-full h-full">
+          <p class="flex flex-col justify-center items-center text-darkgray font-medium">
+            <span class="subtitle uppercase mb-2">{{ $global.resources.where }}</span>
+            <h3 class="font-medium normal-case mb-4" v-html="$global.resources.address"></h3>
+            <span class="subtitle uppercase mt-4">{{ $global.resources.social }}</span>
+            <span class="flex flex-col justify-center items-center my-4">
+              <h3 class="capitalize">
+                <a :href="$global.resources.instagramLink" target="_blank">
+                  {{ $global.resources.instagram }}
+                </a>
+              </h3>
+              <h3 class="capitalize">
+                <a :href="$global.resources.linkedinLink" target="_blank">
+                  {{ $global.resources.linkedin }}
+                </a>
+              </h3>
+              <h3 class="capitalize">
+                <a :href="$global.resources.vimeoLink" target="_blank">
+                  {{ $global.resources.vimeo }}
+                </a>
+              </h3>
+            </span>
+            <span class="subtitle uppercase my-4">{{ $global.resources.phone }}</span>
+
+            <h3 class="font-medium normal-case">
+              <a :href="`tel:${$global.resources.phoneNumber}`">{{ $global.resources.phoneNumber }}</a>
+            </h3>
+
+            <span class="subtitle uppercase my-4">{{ $global.resources.mail }}</span>
+            <h3 class="font-medium normal-case">
+              <a :href="`mailto:${$global.resources.mailAddress}`">{{ $global.resources.mailAddress }}</a>
+            </h3>
+          </p>
+        </div>
+      </div>
+
+      <div class="absolute hidden md:grid bottom-0 w-full h-full  md:grid-cols-2 2xl:p-16 md:p-12">
         <div class="flex justify-center md:justify-start items-end">
           <div class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
-            <div class="2xl:mb-12 mb-8">
+            <div class="2xl:mb-12 mb-8 font-medium">
               <span class="subtitle">{{ $global.resources.where }}</span>
             </div>
             <div>

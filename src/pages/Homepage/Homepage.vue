@@ -1,8 +1,8 @@
 <template>
   <div class="fullsize overflow-hidden" data-position="absolute">
     <!-- <Image :format="ImageFormat.LANDSCAPE" :src="getVersioned('placeholders/01.jpg')" /> -->
-    <div ref="content" class="relative w-full h-full" @click="openProject">
-      <ImageAnimation v-for="(image, key) in projects" :key="key" :position="key - index">
+    <div ref="content" class="relative w-full h-full">
+      <ImageAnimation v-for="(image, key) in projects" :key="key" :position="key - index" @click="openProject(key)">
         <Image :format="image.format" :src="image.src" />
       </ImageAnimation>
     </div>
@@ -14,13 +14,13 @@
           </h2>
         </div>
         <h2
-          @mouseenter.native="onLinkOver"
-          @mouseleave.native="onLinkOut"
-          @click="openProject"
           v-for="(item, key) in projects"
           :key="key"
           :data-extra="item.year"
           :class="['relative cursor-pointer project-label font-serif mr-14 whitespace-nowrap normal-case tra duration-500 ease-out', index === key ? '-skew-x-12' : '']"
+          @mouseenter.native="onLinkOver"
+          @mouseleave.native="onLinkOut"
+          @click.prevent="openProject(key)"
         >
           <Label :label="item.title" class="pb-2" :delay="key * 0.1" />
         </h2>
@@ -45,8 +45,8 @@ h2 {
   }
   &::after {
     content: attr(data-extra);
-    font-size: 20%;
-    @apply absolute top-0 leading-none font-sans  right-0 translate-x-full;
+    font-size: 11px;
+    @apply absolute top-0 leading-none font-sans right-0 translate-x-full;
   }
 }
 </style>

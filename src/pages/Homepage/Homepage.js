@@ -19,6 +19,9 @@ export default defineComponent({
       index: 0,
       canScroll: true,
       projectPosition: 0,
+      projects: this.getProjects()
+
+      /*
       projects: [
         {
           title: 'Progetto Uno',
@@ -41,6 +44,7 @@ export default defineComponent({
           src: this.getVersioned('placeholders/square.jpg')
         }
       ]
+      */
     }
   },
   watch: {
@@ -73,15 +77,30 @@ export default defineComponent({
     ...mapMutations({
       setLoadingState: SET_LOADING_STATE
     }),
+    getProjects() {
+      const projects = []
+      this.$global.projects.forEach(({ name, year, cover }) => {
+        projects.push({
+          title: name,
+          year,
+          format: cover.ratio,
+          src: this.getAsset(cover.image.url)
+        })
+      })
+
+      return projects
+    },
     initialize() {
       this.setProjectPosition()
       this.addListeners()
     },
-    async openProject() {
+    async openProject(index) {
       this.$routerClick.active = true
       this.setLoadingState(true)
       await new Promise((resolve) => setTimeout(resolve, 1500))
-      this.$router.push({ name: this.RouteNames.PROJECT, params: { id: 'id', lang: 'en' } })
+
+      const slug = this.getSlug(this.$global.projects[index].name)
+      this.$router.push({ name: this.RouteNames.PROJECT, params: { id: slug, lang: 'en' } })
     },
     setProjectPosition() {
       const { previous, index } = this
