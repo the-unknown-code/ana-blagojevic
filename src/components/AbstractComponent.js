@@ -16,7 +16,11 @@ export default defineComponent({
       sw: (state) => state.Application.sw,
       sh: (state) => state.Application.sh,
       menuState: (state) => state.Application.menuState,
-      scrollOffset: (state) => state.Application.scrollOffset
+      scrollOffset: (state) => state.Application.scrollOffset,
+      resources: (state) => state.Application.resources,
+      categories: (state) => state.Application.categories,
+      about: (state) => state.Application.about,
+      projects: (state) => state.Application.projects
     })
   },
   methods: {
@@ -25,6 +29,9 @@ export default defineComponent({
     },
     onLinkOut() {
       this.$eventBus.$emit(this.TOGGLE_LINK, false)
+    },
+    getAsset(url) {
+      return `https://back.anablagojevic.com${url}`
     }
   }
 })

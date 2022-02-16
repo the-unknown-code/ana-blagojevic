@@ -3,10 +3,10 @@
     <Container>
       <div class="flex flex-col justify-center items-center">
         <h2 class="normal-case max-w-xl text-center font-serif">
-          <Label label="The number you have dialed could not be reached" />
+          <Label :label="project.name" />
         </h2>
         <p class="subtitle text-darkgray 2xl:mt-12">
-          <Label label="2017 — 2018" :delay="0.2" />
+          <Label :label="project.year" :delay="0.2" />
         </p>
       </div>
       <Section class="flex justify-center">

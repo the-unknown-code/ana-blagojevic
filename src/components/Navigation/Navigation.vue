@@ -43,7 +43,7 @@
               </template>
               <template v-else>
                 <div class="relative block li">
-                  <AnimatedLabel rollover label="Contacts" class="relative" @click.prevent="isContacts = true" />
+                  <AnimatedLabel rollover :label="$global.resources.contact" class="relative" @click.prevent="isContacts = true" />
                 </div>
               </template>
             </li>
@@ -54,22 +54,22 @@
         <div class="grid text-center md:grid-cols-3 uppercase text-2xl md:text-base">
           <div class="md:text-left">
             <p class="relative subtitle">
-              <span>Codice Fiscale</span>
+              <span>{{ $global.resources.vat }}</span>
             </p>
           </div>
           <div class="md:text-center hidden md:block">
             <p class="relative subtitle">
-              <span>Italiano / English</span>
+              <span>{{ $global.resources.italian }} / {{ $global.resources.english }}</span>
             </p>
           </div>
           <div class="md:text-right">
             <p class="relative subtitle">
-              <span>Credits</span>
+              <span>{{ $global.resources.credits }}</span>
             </p>
           </div>
           <div class="md:text-center pt-8 md:hidden">
             <p class="relative subtitle">
-              <span>Italiano / English</span>
+              <span>{{ $global.resources.italian }} / {{ $global.resources.english }}</span>
             </p>
           </div>
         </div>
@@ -81,7 +81,7 @@
         <div class="flex justify-center md:justify-start items-center">
           <ul ref="ul" class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
             <li class="relative font-medium select-none overflow-hidden pointer-events-none" @mouseenter.native="onLinkOver" @mouseleave.native="onLinkOut">
-              <AnimatedLabel rollover label="Contacts" class="relative" />
+              <AnimatedLabel rollover :label="$global.resources.contact" class="relative" />
             </li>
             <li><AnimatedLabel rollover label="&nbsp;" class="relative" /></li>
             <li><AnimatedLabel rollover label="&nbsp;" class="relative" /></li>
@@ -93,41 +93,58 @@
         <div class="flex justify-center md:justify-start items-end">
           <div class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
             <div class="2xl:mb-12">
-              <span class="subtitle">Where</span>
+              <span class="subtitle">{{ $global.resources.where }}</span>
             </div>
             <div>
-              <h3 class="font-medium normal-case">Visual Artist & Photographer <br />Doc Creativity Soc Coop <br />Via Pirandello 31/B <br />37138 . Verona . Italy</h3>
+              <h3 class="font-medium normal-case" v-html="$global.resources.address"></h3>
             </div>
             <div class="2xl:mb-12 2xl:mt-32">
-              <span class="subtitle">Phone</span>
+              <span class="subtitle">{{ $global.resources.phone }}</span>
             </div>
             <div>
-              <h3 class="font-medium normal-case">+39 333 123 1234</h3>
+              <h3 class="font-medium normal-case">{{ $global.resources.phoneNumber }}</h3>
             </div>
           </div>
         </div>
         <div class="flex justify-center md:justify-start items-end">
           <ol class="leading-none text-darkgray uppercase flex flex-col items-center md:items-start">
             <li class="2xl:mb-12">
-              <span class="subtitle">Social</span>
+              <span class="subtitle">{{ $global.resources.social }}</span>
             </li>
             <li>
-              <h3 class="font-medium normal-case">Instagram</h3>
+              <h3 class="font-medium capitalize">
+                <a :href="$global.resources.instagramLink" target="_blank">
+                  {{ $global.resources.instagram }}
+                </a>
+              </h3>
             </li>
             <li>
-              <h3 class="font-medium normal-case">Linkedin</h3>
+              <h3 class="font-medium capitalize">
+                <a :href="$global.resources.linkedinLink" target="_blank">
+                  {{ $global.resources.linkedin }}
+                </a>
+              </h3>
             </li>
             <li>
-              <h3 class="font-medium normal-case">Vimeo</h3>
+              <h3 class="font-medium capitalize">
+                <a :href="$global.resources.vimeoLink" target="_blank">
+                  {{ $global.resources.vimeo }}
+                </a>
+              </h3>
             </li>
+            <!--
             <li>
-              <h3 class="font-medium normal-case">Facebook</h3>
+              <h3 class="font-medium normal-case">#Facebook</h3>
             </li>
+
+            -->
             <li class="2xl:mb-12 2xl:mt-32">
-              <span class="subtitle">Mail</span>
+              <span class="subtitle">{{ $global.resources.mail }}</span>
             </li>
             <li>
-              <h3 class="font-medium normal-case">info@anablagojevic.com</h3>
+              <h3 class="font-medium normal-case">
+                <a :href="`mailto:${$global.resources.mailAddress}`">{{ $global.resources.mailAddress }}</a>
+              </h3>
             </li>
           </ol>
         </div>

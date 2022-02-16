@@ -37,6 +37,15 @@ export default defineComponent({
     },
     onLinkOut() {
       this.$eventBus.$emit(this.TOGGLE_LINK, false)
+    },
+    getAsset(url) {
+      return `https://back.anablagojevic.com${url}`
+    },
+    getSlug(label) {
+      return label
+        .toLowerCase()
+        .replace(/[^\w ]+/g, '')
+        .replace(/ +/g, '-')
     }
   }
 })

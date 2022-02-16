@@ -3,7 +3,7 @@
     <div ref="loadingBG" class="fullsize bg-lightgray inset-0 translate-y-full"></div>
     <Container>
       <h1 ref="loadingText" class="mt-16 md:mt-0 w-full text-center translate-x-full">
-        <span>Loading</span>
+        <span>{{ $global.resources.loading }}</span>
       </h1>
     </Container>
   </div>

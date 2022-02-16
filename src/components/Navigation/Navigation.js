@@ -16,22 +16,22 @@ export default defineComponent({
       nav: [
         {
           route: 'homepage',
-          label: 'HOME',
+          label: this.$global.resources.home,
           image: this.getVersioned('placeholders/menu-01.jpg')
         },
         {
           route: 'about',
-          label: 'ABOUT',
+          label: this.$global.resources.about,
           image: this.getVersioned('placeholders/menu-02.jpg')
         },
         {
           route: 'projects',
-          label: 'PROJECTS',
+          label: this.$global.resources.projects,
           image: this.getVersioned('placeholders/menu-03.jpg')
         },
         {
           action: 'contact',
-          label: 'CONTACT',
+          label: this.$global.resources.contact,
           image: this.getVersioned('placeholders/menu-04.jpg')
         }
       ]

@@ -11,7 +11,8 @@ export default defineComponent({
   data() {
     return {
       isLoading: false,
-      projects: [
+      projects: this.$global.projects,
+      oldprojects: [
         {
           format: this.ImageFormat.PORTRAIT,
           src: this.getVersioned('placeholders/portrait.jpg'),

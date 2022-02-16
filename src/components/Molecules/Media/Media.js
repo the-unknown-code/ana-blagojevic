@@ -61,7 +61,6 @@ export default defineComponent({
 
       const max = sh + bb.height
       const position = -(bb.y - sh)
-      if (this.debug) console.log(bb.height)
 
       if (position > 0) {
         const perc = position / max

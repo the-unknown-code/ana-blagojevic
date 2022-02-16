@@ -26,6 +26,7 @@ import { SET_LOCALE, SET_THEME_MODE } from '@/store/modules/Application'
 import directives from '@/directives'
 import components from '@/components'
 import App from './app/App.vue'
+import { GET_RESOURCES, GET_CATEGORIES, GET_PROJECTS, GET_ABOUT } from '@/store/modules/Application'
 
 // Service worker (works only in production mode)
 require('@/utils/ServiceWorker')
@@ -57,10 +58,14 @@ RegisterPlugin.registerComponents(app, components)
 const $devMode = process.env.NODE_ENV === Environment.DEVELOPMENT
 const startup = async () => {
   // store theme mode
-  store.commit(SET_THEME_MODE, config.variables[Variable.THEME_MODE])
+  // store.commit(SET_THEME_MODE, config.variables[Variable.THEME_MODE])
 
   // store the current locale
   store.commit(SET_LOCALE, config.properties[Property.DEFAULT_LOCALE])
+  const resources = await store.dispatch(GET_RESOURCES)
+  const about = await store.dispatch(GET_ABOUT)
+  const categories = await store.dispatch(GET_CATEGORIES)
+  const projects = await store.dispatch(GET_PROJECTS)
 
   app.use(vueHead)
   app.use(InstallPlugin, {
@@ -71,6 +76,12 @@ const startup = async () => {
     $mobile,
     $phone,
     $routerClick: { active: false },
+    $global: {
+      resources,
+      about,
+      categories,
+      projects
+    },
     Events,
     Ease,
     ImageFormat,
