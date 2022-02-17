@@ -1,9 +1,22 @@
 // Vue @component
 import { defineComponent } from 'vue'
 import { mapMutations } from 'vuex'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 import { gsap } from 'gsap/all'
+import filter from 'lodash/filter'
 import AbstractPage from '@/pages/AbstractPage'
 import { SET_LOADING_STATE } from '@/store/modules/Application'
+
+const FilterType = {
+  ALL: 'all',
+  PERSONAL: 'personal',
+  ASSIGNMENTS: 'assignments'
+}
+
+const ProjectType = {
+  PERSONAL: 'PERSONAL',
+  ASSIGNMENTS: 'COMMISSION'
+}
 
 export default defineComponent({
   name: 'Projects',
@@ -11,89 +24,21 @@ export default defineComponent({
   data() {
     return {
       isLoading: false,
-      projects: this.$global.projects,
-      oldprojects: [
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          format: this.ImageFormat.LANDSCAPE,
-          src: this.getVersioned('placeholders/landscape.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          format: this.ImageFormat.SQUARE,
-          src: this.getVersioned('placeholders/square.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-
-        {
-          spacer: true
-        },
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          spacer: true
-        },
-
-        {
-          format: this.ImageFormat.LANDSCAPE,
-          src: this.getVersioned('placeholders/landscape.jpg'),
-          title: 'Lorem Ipsum'
-        },
-
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          format: this.ImageFormat.LANDSCAPE,
-          src: this.getVersioned('placeholders/landscape.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          spacer: true
-        },
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          spacer: true
-        },
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        },
-        {
-          spacer: true
-        },
-        {
-          format: this.ImageFormat.PORTRAIT,
-          src: this.getVersioned('placeholders/portrait.jpg'),
-          title: 'Lorem Ipsum'
-        }
-      ]
+      currentFilter: null,
+      projects: this.getProjects()
     }
+  },
+  watch: {
+    async currentFilter() {
+      this.projects = this.getProjects()
+      await this.$nextTick()
+
+      ScrollTrigger.update()
+      ScrollTrigger.refresh()
+    }
+  },
+  created() {
+    this.$eventBus.$on(this.Events.FILTER_CHANGED, this.onFilterChanged)
   },
   async mounted() {
     await this.$nextTick()
@@ -103,6 +48,24 @@ export default defineComponent({
     ...mapMutations({
       setLoadingState: SET_LOADING_STATE
     }),
+    getProjects() {
+      console.log(this.currentFilter)
+      if (!this.currentFilter) return this.$global.projects
+      return filter(this.$global.projects, ({ category }) => category.name === this.currentFilter)
+    },
+    onFilterChanged(filter) {
+      switch (filter) {
+        case FilterType.ALL:
+          this.currentFilter = null
+          break
+        case FilterType.PERSONAL:
+          this.currentFilter = ProjectType.PERSONAL
+          break
+        case FilterType.ASSIGNMENTS:
+          this.currentFilter = ProjectType.ASSIGNMENTS
+          break
+      }
+    },
     async openProject(index) {
       this.$routerClick.active = true
       gsap.to(this.$refs.h1, {

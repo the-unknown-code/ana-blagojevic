@@ -8,6 +8,16 @@
   @apply absolute opacity-0;
 }
 
+.simple-fade-enter-active,
+.simple-fade-leave-active {
+  transition: all 12.5s ease-out;
+}
+
+.simple-fade-enter-from,
+.simple-fade-leave-to {
+  @apply absolute opacity-0;
+}
+
 .thumb-enter-active,
 .thumb-leave-active {
   transition: all 1s ease-out;

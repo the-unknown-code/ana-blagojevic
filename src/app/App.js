@@ -40,16 +40,20 @@ export default defineComponent({
     }),
     beforeEnter($el) {
       window.scrollTo(0, 0)
-      if (this.$route.name === this.RouteNames.HOMEPAGE) return
+      if (this.$route.name === this.RouteNames.HOMEPAGE) {
+        gsap.set($el, { opacity: 0 })
+        return
+      }
+
       if (this.$routerClick.active) gsap.set($el, { position: 'fixed', force3D: true, y: '100%' })
+      else gsap.set($el, { opacity: 0 })
     },
     enter($el) {
-      if (this.$route.name === this.RouteNames.HOMEPAGE) return
-
       gsap.to($el, {
         delay: this.$route.name === this.RouteNames.PROJECT && this.$routerClick.active ? 0.35 : 0,
         duration: 1.5,
         ease: this.Ease.BEZIER_SLOW,
+        opacity: 1,
         y: 0,
         clearProps: true,
         onUpdate: () => {
@@ -73,6 +77,8 @@ export default defineComponent({
       this.$eventBus.$emit(this.Events.SCROLL, { x: 0, y })
     },
     onResizeHandler() {
+      ScrollTrigger.refresh()
+      ScrollTrigger.update()
       const { innerWidth, innerHeight } = window
       this.setStage({ sw: innerWidth, sh: innerHeight })
       this.$eventBus.$emit(this.Events.RESIZE)

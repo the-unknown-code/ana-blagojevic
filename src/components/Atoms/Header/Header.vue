@@ -18,26 +18,58 @@
       </div>
       <div></div>
       <div class="relative z-10 text-right whitespace-nowrap">
-        <p class="subtitle uppercase font-medium text-white leading-none z-50">
+        <p ref="copyright" :class="['absolute transition-all duration-1000 ease-in-out right-0 subtitle uppercase font-medium text-white leading-none z-50', isProjects ? '-translate-y-full opacity-0' : '']">
           <Label label="® 2022" :delay="0.1" />
         </p>
+
+        <div ref="filterGroup" class="relative">
+          <p ref="filter" :class="['absolute transition-all duration-1000 ease-in-out right-0 subtitle uppercase font-medium text-white leading-none z-50 flex', isProjects ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0']">
+            <Label label="Filter" :delay="0.1" @click.prevent="isFilter = !isFilter" class="cursor-pointer"   @mouseenter.native="onLinkOver"
+          @mouseleave.native="onLinkOut" />
+            <div ref="filterArea" :class="['absolute transition-all duration-500 ease-out right-0 flex justify-start items-center translate-x-full', isFilter ? 'opacity-100' : 'opacity-0']">
+              <Label class="ml-6 xl:ml-8 cursor-pointer filter-item" :data-active="selectedFilter === FilterType.ALL" label="All" :delay="0.1" @click.prevent="selectedFilter = FilterType.ALL"  @mouseenter.native="onLinkOver"
+          @mouseleave.native="onLinkOut" />
+              <Label class="ml-6 xl:ml-8 cursor-pointer filter-item" :data-active="selectedFilter === FilterType.PERSONAL" label="Personal" :delay="0.1" @click.prevent="selectedFilter = FilterType.PERSONAL"  @mouseenter.native="onLinkOver"
+          @mouseleave.native="onLinkOut" />
+              <Label class="ml-6 xl:ml-8 cursor-pointer filter-item" :data-active="selectedFilter === FilterType.ASSIGNMENTS" label="Assignments" :delay="0.1" @click.prevent="selectedFilter = FilterType.ASSIGNMENTS"  @mouseenter.native="onLinkOver"
+          @mouseleave.native="onLinkOut" />
+            </div>
+          </p>
+        </div>
       </div>
     </div>
   </header>
 
   <div
     :class="[
-      'fixed top-0 py-4 w-0 md:w-1/2 left-1/2 md:-translate-x-1/2 text-center flex-grow text-white transition-all duration-1000 ease-in-out z-40 md:z-50',
+      'fixed top-0 py-3 w-0 md:w-0 left-1/2 md:-translate-x-1/2 text-center flex-grow text-white transition-all duration-1000 ease-in-out z-40 md:z-50',
       toggle ? 'translate-y-0' : '-translate-y-full opacity-0'
     ]"
   >
     <router-link class="absolute -translate-x-1/2" :to="{ name: RouteNames.HOMEPAGE, params: { lang: 'en' } }">
       <p class="relative font-medium subtitle uppercase text-darkgray leading-none px-2 md:px-4 md:text-base">
         <Label label="Ana<br/>Blagojevic" class="md:hidden text-5xl" />
-        <Label label="Ana Blagojevic" class="hidden md:block" />
+        <Label label="Ana Blagojevic" class="hidden md:block whitespace-nowrap" />
       </p>
     </router-link>
   </div>
 </template>
 
 <script lang="js" src="./Header.js"></script>
+<style lang="scss" scoped>
+
+.filter-item {
+&::after {
+    content: '';
+    @apply absolute w-1 h-1 bg-white rounded-full left-1/2 -bottom-2 opacity-0 transition-opacity duration-500;
+  }
+}
+
+.filter-item[data-active="true"] {
+  overflow: inherit;
+  &::after {
+    opacity: 1 !important;
+  }
+}
+
+</style>

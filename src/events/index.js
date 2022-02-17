@@ -16,5 +16,6 @@ export const Events = {
   MOUSEMOVE: 'mousemove',
   SCROLL: 'scroll',
   TOGGLE_HEADER: 'toggle-header',
-  TOGGLE_LINK: 'toggle-link'
+  TOGGLE_LINK: 'toggle-link',
+  FILTER_CHANGED: 'filter-changed'
 }
