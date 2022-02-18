@@ -50,7 +50,7 @@ export default defineComponent({
         case 'right':
           return 'pl-8 md:pl-32'
         case 'center':
-          return 'px-4 md:px-16'
+          return 'px-4 md:px-32'
         case 'fullscreen':
           return ''
       }

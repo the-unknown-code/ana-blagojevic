@@ -18,7 +18,7 @@ export default defineComponent({
       gsap.to(this.$refs.scale, {
         duration: 2,
         ease: 'elastic.out',
-        scale: this.link ? 1.5 : 1
+        scale: this.link ? 2 : 1
       })
     }
   },

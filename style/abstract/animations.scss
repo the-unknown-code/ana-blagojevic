@@ -20,15 +20,15 @@
 
 .thumb-enter-active,
 .thumb-leave-active {
-  transition: all 1s ease-out;
+  transition: all .5s ease-out;
 }
 
 .thumb-enter-from {
- @apply absolute opacity-0 scale-90;
+ @apply absolute opacity-100 scale-90 origin-center;
 }
 
 .thumb-leave-to {
- @apply absolute opacity-0 scale-110;
+ @apply absolute opacity-100 scale-110 origin-center;
 }
 
 .default-transition {

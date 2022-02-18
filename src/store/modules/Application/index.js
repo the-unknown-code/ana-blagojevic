@@ -76,11 +76,9 @@ export default {
       state.menuState = menuState === undefined ? !state.menuState : menuState
     },
     [SET_RESOURCES](state, data) {
-      console.log(data)
       state.resources = data
     },
     [SET_PROJECTS](state, data) {
-      console.log(data)
       state.projects = data
     },
     [SET_CATEGORIES](state, data) {

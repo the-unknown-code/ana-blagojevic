@@ -1,3 +1,5 @@
+import getStore from '@/store'
+
 const load = (page) => () => import(`@/pages/${page}.vue`)
 
 export const RouteNames = {

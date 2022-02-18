@@ -16,6 +16,7 @@ export default defineComponent({
       sh: (state) => state.Application.sh
     })
   },
+
   beforeCreate() {
     window.scrollTo(0, 0)
   },

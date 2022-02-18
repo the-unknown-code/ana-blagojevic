@@ -49,8 +49,19 @@ export default defineComponent({
       setLoadingState: SET_LOADING_STATE
     }),
     getProjects() {
-      console.log(this.currentFilter)
-      if (!this.currentFilter) return this.$global.projects
+      if (!this.currentFilter) {
+        const projects = []
+        this.$global.projects.forEach((project) => {
+          projects.push(project)
+          if (project.focus) {
+            projects.push({
+              spacer: true
+            })
+          }
+        })
+        console.log(projects)
+        return projects
+      }
       return filter(this.$global.projects, ({ category }) => category.name === this.currentFilter)
     },
     onFilterChanged(filter) {

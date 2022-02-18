@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-screen flex-center p-0 md:p-24 2xl:p-32">
+  <div class="relative w-full h-screen flex-center p-0 md:p-40 2xl:p-40">
     <slot />
   </div>
 </template>

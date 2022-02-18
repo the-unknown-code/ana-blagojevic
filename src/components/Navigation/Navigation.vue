@@ -53,23 +53,23 @@
       <div class="absolute bottom-0 w-full px-8 pb-8">
         <div class="grid text-center text-darkgray md:grid-cols-3 uppercase text-2xl md:text-base">
           <div class="md:text-left">
-            <p class="relative subtitle">
+            <p class="relative subtitle regular">
               <span>{{ $global.resources.vat }}</span>
             </p>
           </div>
           <div class="md:text-center hidden md:block">
-            <p class="relative subtitle">
-              <span>{{ $global.resources.italian }} / {{ $global.resources.english }}</span>
+            <p class="relative subtitle regular">
+              <span>ITALIANO</span>
             </p>
           </div>
           <div class="md:text-right">
-            <p class="relative subtitle">
-              <span>{{ $global.resources.credits }}</span>
+            <p class="relative subtitle regular">
+              <a href="https://e-t.studio" target="_blank" name="ET Studio">{{ $global.resources.credits }}</a>
             </p>
           </div>
           <div class="md:text-center pt-8 md:hidden">
-            <p class="relative subtitle">
-              <span>{{ $global.resources.italian }} / {{ $global.resources.english }}</span>
+            <p class="relative subtitle regular">
+              <span>ITALIANO</span>
             </p>
           </div>
         </div>

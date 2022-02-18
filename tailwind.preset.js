@@ -48,7 +48,9 @@ module.exports = {
         12: '3.25rem'
       },
       fontSize: {
-        title: '4.15rem'
+        title: '4.15rem',
+        h1: '11.9rem',
+        'h1-md': '10rem'
       }
     }
   }

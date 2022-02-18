@@ -18,6 +18,7 @@ export default defineComponent({
     return {
       FilterType,
       selectedFilter: FilterType.ALL,
+      selectModel: FilterType.ALL,
       isFilter: false,
       isProjects: false,
       canClick: true,
@@ -31,7 +32,14 @@ export default defineComponent({
       this.selectedFilter = FilterType.ALL
       this.isProjects = this.$route.name === this.RouteNames.PROJECTS
     },
-    selectedFilter(filter) {
+    async selectedFilter(filter) {
+      this.selectModel = filter
+      await this.$nextTick()
+      this.$eventBus.$emit(this.Events.FILTER_CHANGED, filter)
+    },
+    async selectModel(filter) {
+      this.selectedFilter = filter
+      await this.$nextTick()
       this.$eventBus.$emit(this.Events.FILTER_CHANGED, filter)
     },
     isFilter() {
@@ -70,6 +78,7 @@ export default defineComponent({
         ease: this.Ease.BEZIER_IN_OUT
       })
     },
+    onSelectClick() {},
     onResize() {
       this.isFilter = false
     },

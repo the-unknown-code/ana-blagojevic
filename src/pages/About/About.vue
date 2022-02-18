@@ -3,8 +3,8 @@
     <Container>
       <div class="mt-8">
         <div class="relative grid md:grid-cols-2">
-          <div class="relative mb-12 md:mb-0">
-            <div class="md:w-2/5 mx-auto">
+          <div id="bio" class="relative mb-12 md:mb-0">
+            <div class="md:w-2/4 mx-auto" ref="bio">
               <Media :src="getAsset($global.about.imageTopMini.url)" :format="ImageFormat.PORTRAIT" :duration="2" />
             </div>
           </div>
@@ -36,13 +36,20 @@
 
 <script lang="js" src="./About.js"></script>
 <style lang="scss" scoped>
-#info {
+#info,
+#bio {
   @media screen and (min-width: 768px) {
-    transform: translateX(-5vw);
+    transform: translateX(-4.5rem);
   }
 
   @media screen and (min-width: 1920px) {
-    transform: translateX(0);
+    transform: translateX(-5.5rem);
+  }
+}
+
+#bio {
+  @media screen and (min-width: 768px) {
+    top: 2rem;
   }
 }
 </style>

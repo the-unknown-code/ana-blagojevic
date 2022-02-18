@@ -8,10 +8,11 @@ import Header from '@/components/Atoms/Header/Header.vue'
 import Footer from '@/components/Atoms/Footer/Footer.vue'
 import MouseTrail from '@/components/Atoms/MouseTrail/MouseTrail.vue'
 import Loading from '@/components/Atoms/Loading/Loading.vue'
+import Preloader from '@/components/Utils/Preloader/Preloader.vue'
 
 export default defineComponent({
   name: 'App',
-  components: { Navigation, Header, Footer, MouseTrail, Loading },
+  components: { Navigation, Header, Footer, MouseTrail, Loading, Preloader },
   computed: {
     ...mapState({
       loadingState: (state) => state.Application.loadingState
@@ -38,6 +39,7 @@ export default defineComponent({
       setScrollOffset: SET_SCROLL_OFFSET,
       setLoadingState: SET_LOADING_STATE
     }),
+
     beforeEnter($el) {
       window.scrollTo(0, 0)
       if (this.$route.name === this.RouteNames.HOMEPAGE) {

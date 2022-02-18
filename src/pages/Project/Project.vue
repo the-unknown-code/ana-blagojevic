@@ -10,7 +10,7 @@
         </p>
       </div>
       <Section class="flex justify-center">
-        <div class="relative w-full md:w-1/2">
+        <div :class="['relative', project.cover.ratio === ImageFormat.LANDSCAPE ? 'w-full' : 'w-2/3']">
           <Media :src="getAsset(project.cover.image.url)" :format="project.cover.ratio" :duration="2" />
         </div>
       </Section>
@@ -23,24 +23,24 @@
         </Section>
         <Section v-else-if="item.__component === RowType.PORTRAIT" class="flex justify-center">
           <template v-if="item.imageCenter">
-            <div class="grid mx-auto">
-              <Media :src="getAsset(item.imageCenter.url)" :format="ImageFormat.PORTRAIT" :duration="2" parallax :scale="1" />
+            <div class="grid mx-auto bg-black">
+              <Media :src="getAsset(item.imageCenter.url)" :format="ImageFormat.PORTRAIT" :duration="2" :scale="1" opacity />
             </div>
           </template>
           <template v-else>
             <div class="grid md:grid-cols-2 gap-12 md:gap-24">
-              <div class="w-full">
-                <Media v-if="item.imageLeft" :src="getAsset(item.imageLeft.url)" :format="ImageFormat.PORTRAIT" :duration="2" parallax :scale="1" />
+              <div class="w-full bg-black">
+                <Media v-if="item.imageLeft" :src="getAsset(item.imageLeft.url)" :format="ImageFormat.PORTRAIT" :duration="2" :scale="1" opacity />
               </div>
-              <div class="w-full">
-                <Media v-if="item.imageRight" :src="getAsset(item.imageRight.url)" :format="ImageFormat.PORTRAIT" :duration="2" parallax :scale="1" />
+              <div class="w-full bg-black">
+                <Media v-if="item.imageRight" :src="getAsset(item.imageRight.url)" :format="ImageFormat.PORTRAIT" :duration="2" :scale="1" opacity />
               </div>
             </div>
           </template>
         </Section>
         <Section v-else-if="item.__component === RowType.LANDSCAPE">
           <FullWidth :class="getPadding(item.position)">
-            <Media :src="getAsset(item.image.url)" :format="ImageFormat.LANDSCAPE" :duration="2" parallax :scale="1" />
+            <Media :src="getAsset(item.image.url)" :format="ImageFormat.LANDSCAPE" :duration="2" :scale="1" opacity class="bg-black" />
           </FullWidth>
         </Section>
         <Section v-else-if="item.__component === RowType.VIDEO">
@@ -58,6 +58,7 @@
         </Section>
       </template>
 
+      <div class="pt-2 2xl:pt-4"></div>
       <ProjectThumbnail :project="nextProject" />
     </Container>
   </article>
